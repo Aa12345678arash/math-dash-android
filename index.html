@@ -96,11 +96,29 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
 .leader-row{color:#194d7c;border-bottom-color:#b8dff1;font-size:13px}footer{color:#3b7095;font-weight:700}
 @media(max-width:390px){.hero h2{font-size:24px}.utility-row button{font-size:11px;padding:9px 10px}.question h2{font-size:30px}}
 
+
+.head-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.head-btn{border:1px solid #fff;background:linear-gradient(180deg,#fff,#e6f5ff);color:#174c80;border-radius:13px;padding:8px 10px;font-size:11px;font-weight:900;box-shadow:0 3px 0 #9ccce7}
+#settingsPanel{display:block}#settingsPanel.collapsed{display:none}
+.daily-card{margin-top:18px;padding:18px;border:2px solid #fff;border-radius:23px;background:linear-gradient(145deg,#fff,#f4fbff);box-shadow:0 8px 0 #b6dff2,0 15px 28px #286c9b22}
+.daily-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#164d82;font-size:15px;font-weight:900;flex-wrap:wrap}
+.daily-badge{background:#fff1bd;color:#8b5b0b;border:1px solid #ffda68;border-radius:30px;padding:6px 10px;font-size:10px}
+.daily-card p{color:#50779a;font-size:12px;line-height:1.8;margin:12px 0}
+.final-challenge{width:100%;border:2px solid #fff;border-bottom:5px solid #bd5d28;border-radius:16px;padding:13px;color:#fff;font-weight:900;font-size:14px;background:linear-gradient(105deg,#ff9a35 0%,#ffbd43 42%,#258ce8 100%);text-shadow:0 2px 3px #743b2b66;box-shadow:0 7px 16px #d37d3840}
+.final-challenge:active{transform:translateY(2px)}
+.mode[data-mode="add"]{background:linear-gradient(145deg,#e8f5ff,#a9d9ff);border-bottom-color:#5ea6e5}
+.mode[data-mode="subtract"]{background:linear-gradient(145deg,#e0fff8,#a5f0df);border-bottom-color:#51c6a9}
+.mode[data-mode="multiply"]{background:linear-gradient(145deg,#fff0df,#ffc18a);border-bottom-color:#e89b54}
+.mode[data-mode="divide"]{background:linear-gradient(145deg,#e7ffed,#a9edbd);border-bottom-color:#5dbb7c}
+.mode[data-mode="tables"]{background:linear-gradient(145deg,#f6edff,#d8c0ff);border-bottom-color:#a080d7}
+.mode[data-mode="mixed"]{background:linear-gradient(145deg,#fff9d8,#ffe89b);border-bottom-color:#e5b94b}
+@media(max-width:420px){header{align-items:flex-start}.head-actions{max-width:60%}.head-btn{font-size:10px;padding:7px 8px}.version{display:none}.daily-card{padding:15px}}
+
   </style>
 </head>
 <body>
 <div class="app">
-  <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="version">نسخه ۰.۱.۲</div></header>
+  <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="head-actions"><button class="head-btn" id="leaderBtn">🏆 رتبه‌بندی</button><button class="head-btn" id="settingsBtn" aria-expanded="false">⚙️ تنظیمات</button><span class="version">۰.۱.۲</span></div></header>
   <main>
     <section id="home" class="screen home show">
       <div class="panel hero"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><button class="primary" id="start">شروع بازی ←</button></div>
@@ -114,12 +132,13 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
         <button class="mode" data-mode="tables"><span class="symbol">📚</span><strong>جدول ضرب</strong><small>مرور جدول‌های ضرب</small></button>
       </div>
       <div class="section-title">تنظیمات تمرین</div>
-      <div class="panel"><div class="settings">
+      <div class="panel" id="settingsPanel"><div class="settings">
         <div class="field"><label for="level">سطح دشواری</label><select id="level"><option value="easy">آسان</option><option value="normal" selected>متوسط</option><option value="hard">پیشرفته</option></select></div>
         <div class="field"><label for="range">بازه اعداد</label><select id="range"><option value="10">۱ تا ۱۰</option><option value="20" selected>۱ تا ۲۰</option></select></div>
         <div class="field"><label for="duration">زمان بازی</label><select id="duration"><option value="60">۱ دقیقه</option><option value="120" selected>۲ دقیقه</option><option value="180">۳ دقیقه</option></select></div>
         <div class="field"><label for="digits">نمایش اعداد</label><select id="digits"><option value="fa" selected>فارسی</option><option value="en">انگلیسی</option></select></div>
-      </div><div class="start-row utility-row"><button class="ghost" id="leaderBtn">🏆 رکوردها</button><button class="ghost" id="musicBtn" aria-pressed="true">🎵 موسیقی: روشن</button><button class="ghost" id="soundBtn" aria-pressed="true">🔊 صدا: روشن</button></div></div>
+      </div><div class="start-row utility-row"><button class="ghost" id="musicBtn" aria-pressed="true">🎵 موسیقی: روشن</button><button class="ghost" id="soundBtn" aria-pressed="true">🔊 صدا: روشن</button></div></div>
+      <div class="daily-card"><div class="daily-top"><span>🌟 چالش روزانه</span><span class="daily-badge">هدف امروز: ۴۰ پاسخ درست</span></div><p>هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.</p><button class="final-challenge" id="dailyChallenge">🚀 ورود به چالش نهایی</button></div>
     </section>
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div></div>
@@ -135,7 +154,7 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
 <script>
 (()=>{
  const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
- const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0};
+ const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0,challengeGoal:0};
  const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
  const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
  const num=n=>$('digits').value==='fa'?toFa(n):String(n);
@@ -166,12 +185,14 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
  }
- function answer(btn,v){if(state.locked||state.timer===null||state.left<=0)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){const elapsed=performance.now()-state.questionAt;const bonus=Math.max(0,Math.min(5,Math.ceil((5000-elapsed)/1000)));state.hits++;state.score+=10+bonus;btn.classList.add('correct');$('feedback').textContent=bonus?'آفرین! '+num(10+bonus)+' امتیاز گرفتی؛ سرعتت عالی بود! 🌟':'آفرین! پاسخ درست بود؛ ۱۰ امتیاز ⭐';$('feedback').style.color='#16864d'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans)+' · دوباره تلاش کن!';$('feedback').style.color='#d83b56';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);setTimeout(()=>{if(state.left>0&&state.timer!==null)makeQuestion()},650)}
+ function answer(btn,v){if(state.locked||state.timer===null||state.left<=0)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){const elapsed=performance.now()-state.questionAt;const bonus=Math.max(0,Math.min(5,Math.ceil((5000-elapsed)/1000)));state.hits++;state.score+=10+bonus;btn.classList.add('correct');$('feedback').textContent=bonus?'آفرین! '+num(10+bonus)+' امتیاز گرفتی؛ سرعتت عالی بود! 🌟':'آفرین! پاسخ درست بود؛ ۱۰ امتیاز ⭐';$('feedback').style.color='#16864d'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans)+' · دوباره تلاش کن!';$('feedback').style.color='#d83b56';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);if(state.challengeGoal&&state.hits>=state.challengeGoal){finish();return}setTimeout(()=>{if(state.left>0&&state.timer!==null)makeQuestion()},650)}
  function tick(){state.left--;let m=Math.floor(state.left/60),s=state.left%60;$('time').textContent=num(String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));$('bar').style.width=(state.left/state.total*100)+'%';if(state.left<=0)finish()}
- function start(){clearInterval(state.timer);state.score=state.hits=state.count=0;state.total=state.left=+$('duration').value;$('score').textContent=$('hits').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,1000);if(state.music)startMusic()}
- function finish(){clearInterval(state.timer);state.timer=null;stopMusic();show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('resultMessage').textContent=state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!';let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString('fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
+ function start(challenge=false){clearInterval(state.timer);state.challengeGoal=challenge?40:0;state.score=state.hits=state.count=0;state.total=state.left=challenge?180:+$('duration').value;$('score').textContent=$('hits').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,1000);if(state.music)startMusic()}
+ function finish(){clearInterval(state.timer);state.timer=null;stopMusic();show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('resultMessage').textContent=state.challengeGoal?(state.hits>=state.challengeGoal?'🏆 چالش روزانه را کامل کردی! قهرمان محاسبات شدی.':'چالش تمام شد؛ '+num(state.hits)+' پاسخ درست ثبت کردی. فردا دوباره تلاش کن!'):(state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!');let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString('fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
  function leaders(){let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');$('leaderList').innerHTML=rows.length?rows.map((r,i)=>'<div class="leader-row"><span>'+(i+1)+'. '+r.date+'</span><b>'+num(r.score)+' امتیاز · '+num(r.hits)+' درست</b></div>').join(''):'<p class="muted">هنوز رکوردی ثبت نشده است.</p>';show('leaders')}
- $('start').onclick=()=>{if(state.music)startMusic();start()};$('again').onclick=start;$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
+ $('settingsBtn').onclick=()=>{const panel=$('settingsPanel'),hidden=panel.classList.toggle('collapsed');$('settingsBtn').setAttribute('aria-expanded',String(!hidden));if(!hidden)panel.scrollIntoView({behavior:'smooth',block:'nearest'})};
+ $('dailyChallenge').onclick=()=>{if(state.music)startMusic();start(true)};
+ $('start').onclick=()=>{if(state.music)startMusic();start(false)};$('again').onclick=()=>start(false);$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
 })();
 </script>
 </body></html>
