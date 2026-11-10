@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#10172d" />
+  <meta name="description" content="بازی آموزشی تمرینی محاسبات ریاضی؛ ساخته آرش سلیمی" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <title>محاسبات ریاضی | MATH DASH</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+    :root{font-family:Vazirmatn,Tahoma,sans-serif;color:#f6f7ff;background:#10172d;font-synthesis:none}
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#25396b 0,transparent 38%),radial-gradient(ellipse at 90% 75%,#203c52 0,transparent 34%),#10172d}
+    button{font:inherit;cursor:pointer} .app{width:min(100%,620px);margin:auto;padding:22px 17px 34px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:11px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,#ffd166,#ff8c42);display:grid;place-items:center;color:#18213b;font-size:27px;font-weight:900;box-shadow:0 8px 24px #ffae4540}
+    h1{font-size:20px;margin:0;font-weight:900}.en{font-size:10px;letter-spacing:2px;color:#a9b8db;font-weight:800}
+    .version{font-size:11px;color:#b9c7e8;border:1px solid #ffffff20;padding:6px 10px;border-radius:20px}
+    .panel{background:#ffffff0c;border:1px solid #ffffff18;border-radius:25px;padding:20px;box-shadow:0 18px 50px #050a1930;backdrop-filter:blur(12px)}
+    .hero{padding:24px 21px;background:linear-gradient(135deg,#273d70,#1b2a4d 65%,#243e55);position:relative;overflow:hidden}
+    .hero:after{content:"+";position:absolute;font-size:160px;color:#ffffff09;left:20px;top:-42px;font-weight:900}
+    .eyebrow{font-size:12px;color:#ffd166;font-weight:800}.hero h2{font-size:27px;line-height:1.5;margin:8px 0}.hero p{color:#c3cee8;font-size:13px;margin:0 0 18px}
+    .primary{border:0;border-radius:15px;background:linear-gradient(100deg,#ffd166,#ffad55);color:#202943;padding:13px 20px;font-weight:900;box-shadow:0 8px 22px #ffb84a30}
+    .ghost{border:1px solid #ffffff28;background:#ffffff0b;color:#e8edff;border-radius:13px;padding:10px 14px;font-weight:700}
+    .section-title{font-size:15px;font-weight:900;margin:22px 2px 12px}
+    .modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .mode{background:#ffffff0b;border:1px solid #ffffff19;border-radius:17px;padding:13px;text-align:right;color:#f5f6ff;min-height:82px}
+    .mode.active{border-color:#ffd166;background:#ffd16618}.mode .symbol{font-size:23px}.mode strong{display:block;font-size:13px;margin-top:4px}.mode small{color:#aebcdb;font-size:10px}
+    .settings{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:11px;color:#b9c7e8;margin:0 0 7px}
+    select{width:100%;background:#182442;border:1px solid #ffffff25;color:white;border-radius:12px;padding:11px;font:inherit;font-size:12px}
+    .start-row{display:flex;gap:10px;margin-top:17px}.start-row button{flex:1}
+    .screen{display:none}.screen.show{display:block}.home.show{display:block}
+    .game-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:14px}.stat{flex:1;text-align:center;background:#ffffff0c;border:1px solid #ffffff17;border-radius:15px;padding:10px}.stat small{display:block;color:#aebcdb;font-size:10px}.stat b{font-size:19px}
+    .progress{height:8px;border-radius:9px;background:#ffffff18;overflow:hidden;margin:14px 0 22px}.progress span{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ffd166,#ff9255);transition:width .25s}
+    .question{text-align:center;padding:28px 12px 22px}.question .tag{font-size:11px;color:#ffd166}.question h2{font-size:36px;direction:ltr;margin:12px 0;font-weight:900;letter-spacing:1px}
+    .question p{color:#aebcdb;font-size:12px;margin:0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+    .answer{padding:17px 10px;border:1px solid #ffffff22;border-radius:16px;background:#ffffff0b;color:white;font-size:21px;font-weight:900}
+    .answer:active{transform:scale(.98)}.answer.correct{background:#1d9d7550;border-color:#4de0ad}.answer.wrong{background:#c34d5b55;border-color:#ff7787}
+    .feedback{min-height:27px;text-align:center;margin:13px 0 0;font-size:13px;font-weight:700}.muted{color:#aebcdb}
+    .result{text-align:center;padding:28px 12px}.result .big{font-size:52px}.result h2{font-size:25px}.result p{color:#bdc9e5}
+    .result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 0}.result-stats div{background:#ffffff0c;border-radius:14px;padding:12px}.result-stats b{display:block;font-size:20px}.result-stats small{font-size:10px;color:#b6c3df}
+    .leader-row{display:flex;justify-content:space-between;padding:10px 3px;border-bottom:1px solid #ffffff12;font-size:12px}.leader-row:last-child{border:0}
+    footer{text-align:center;color:#8090b5;font-size:10px;margin-top:23px;line-height:2}
+    @media(max-width:380px){.app{padding:16px 12px}.hero h2{font-size:23px}.question h2{font-size:30px}.panel{padding:16px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header><div class="brand"><div class="logo">÷</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="version">نسخه ۰.۱.۱</div></header>
+  <main>
+    <section id="home" class="screen home show">
+      <div class="panel hero"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><button class="primary" id="start">شروع بازی ←</button></div>
+      <div class="section-title">یک روش تمرین انتخاب کن</div>
+      <div class="modes" id="modes">
+        <button class="mode active" data-mode="mixed"><span class="symbol">🎯</span><strong>ترکیبی</strong><small>همه عملیات با هم</small></button>
+        <button class="mode" data-mode="add"><span class="symbol">➕</span><strong>جمع</strong><small>جمع سریع و دقیق</small></button>
+        <button class="mode" data-mode="subtract"><span class="symbol">➖</span><strong>تفریق</strong><small>محاسبه اختلاف</small></button>
+        <button class="mode" data-mode="multiply"><span class="symbol">✖️</span><strong>ضرب</strong><small>تقویت ضرب</small></button>
+        <button class="mode" data-mode="divide"><span class="symbol">➗</span><strong>تقسیم</strong><small>تقسیم بدون باقیمانده</small></button>
+        <button class="mode" data-mode="tables"><span class="symbol">📚</span><strong>جدول ضرب</strong><small>مرور جدول‌های ضرب</small></button>
+      </div>
+      <div class="section-title">تنظیمات تمرین</div>
+      <div class="panel"><div class="settings">
+        <div class="field"><label for="level">سطح دشواری</label><select id="level"><option value="easy">آسان</option><option value="normal" selected>متوسط</option><option value="hard">پیشرفته</option></select></div>
+        <div class="field"><label for="range">بازه اعداد</label><select id="range"><option value="10">۱ تا ۱۰</option><option value="20" selected>۱ تا ۲۰</option></select></div>
+        <div class="field"><label for="duration">زمان بازی</label><select id="duration"><option value="60">۱ دقیقه</option><option value="120" selected>۲ دقیقه</option><option value="180">۳ دقیقه</option></select></div>
+        <div class="field"><label for="digits">نمایش اعداد</label><select id="digits"><option value="fa" selected>فارسی</option><option value="en">انگلیسی</option></select></div>
+      </div><div class="start-row"><button class="ghost" id="leaderBtn">🏆 رکوردها</button><button class="ghost" id="soundBtn">🔊 صدا: روشن</button></div></div>
+    </section>
+    <section id="game" class="screen">
+      <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div></div>
+      <div class="progress"><span id="bar"></span></div>
+      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem">۸ + ۷ = ؟</h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
+      <div class="start-row"><button class="ghost" id="quit">پایان بازی</button></div>
+    </section>
+    <section id="result" class="screen"><div class="panel result"><div class="big">🏅</div><div class="eyebrow">آفرین! تمرین به پایان رسید</div><h2>نتیجه بازی تو</h2><div class="result-stats"><div><b id="finalScore">۰</b><small>امتیاز</small></div><div><b id="finalHits">۰</b><small>پاسخ درست</small></div><div><b id="finalCount">۰</b><small>کل پرسش‌ها</small></div></div><p id="resultMessage"></p><button class="primary" id="again">بازی دوباره</button> <button class="ghost" id="homeBtn">خانه</button></div></section>
+    <section id="leaders" class="screen"><div class="panel"><div class="section-title" style="margin-top:0">🏆 ده رکورد برتر</div><div id="leaderList"></div><div class="start-row"><button class="ghost" id="clearLeaders">پاک کردن رکوردها</button><button class="primary" id="backHome">بازگشت</button></div></div></section>
+  </main>
+  <footer>بازی آموزشی تمرینی محاسبات ریاضی<br>پدیدآورنده: آرش سلیمی · شناسه پروژه: MATH-DASH-001</footer>
+</div>
+<script>
+(()=>{
+ const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
+ const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,last:null};
+ const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
+ const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
+ const num=n=>$('digits').value==='fa'?toFa(n):String(n);
+ const show=id=>document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('show',s.id===id));
+ const rand=n=>Math.floor(Math.random()*n)+1;
+ function beep(ok){if(!state.sound)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?660:190;g.gain.value=.07;o.start();o.stop(c.currentTime+.12);o.onended=()=>c.close()}catch(e){}}
+ document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.mode=b.dataset.mode});
+ $('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 صدا: روشن':'🔇 صدا: خاموش'};
+ function question(){
+  let max=+$('range').value,level=$('level').value;if(level==='easy')max=Math.min(max,10);if(level==='hard')max*=2;
+  let mode=state.mode==='mixed'?['add','subtract','multiply','divide'][rand(4)-1]:state.mode;
+  let a,b,ans,op;
+  if(mode==='add'){a=rand(max);b=rand(max);ans=a+b;op='+'}
+  else if(mode==='subtract'){a=rand(max);b=rand(max);if(b>a)[a,b]=[b,a];ans=a-b;op='−'}
+  else if(mode==='multiply'||mode==='tables'){let lim=mode==='tables'?10:Math.min(12,max);a=rand(lim);b=rand(lim);ans=a*b;op='×'}
+  else {b=rand(Math.min(12,max));ans=rand(Math.min(12,max));a=b*ans;op='÷'}
+  return {a,b,ans,op};
+ }
+ function makeQuestion(){
+  state.locked=false;state.last=question();$('problem').textContent=num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = ؟';$('modeLabel').textContent=names[state.mode];
+  let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
+  let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
+  arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
+ }
+ function answer(btn,v){if(state.locked)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){state.hits++;state.score+=10;btn.classList.add('correct');$('feedback').textContent='آفرین! پاسخ درست بود 🌟';$('feedback').style.color='#4de0ad'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans);$('feedback').style.color='#ff9aa5';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);setTimeout(()=>{if(state.left>0)makeQuestion()},550)}
+ function tick(){state.left--;let m=Math.floor(state.left/60),s=state.left%60;$('time').textContent=num(String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));$('bar').style.width=(state.left/state.total*100)+'%';if(state.left<=0)finish()}
+ function start(){clearInterval(state.timer);state.score=state.hits=state.count=0;state.total=state.left=+$('duration').value;$('score').textContent=$('hits').textContent=num(0);show('game');$('time').textContent=num('02:00');$('bar').style.width='100%';makeQuestion();tick();state.timer=setInterval(tick,1000)}
+ function finish(){clearInterval(state.timer);state.timer=null;show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('resultMessage').textContent=state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!';let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString('fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
+ function leaders(){let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');$('leaderList').innerHTML=rows.length?rows.map((r,i)=>'<div class="leader-row"><span>'+(i+1)+'. '+r.date+'</span><b>'+num(r.score)+' امتیاز · '+num(r.hits)+' درست</b></div>').join(''):'<p class="muted">هنوز رکوردی ثبت نشده است.</p>';show('leaders')}
+ $('start').onclick=start;$('again').onclick=start;$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
+})();
+</script>
+</body></html>
