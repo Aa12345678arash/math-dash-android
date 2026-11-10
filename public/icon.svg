@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#176be7"/><stop offset=".55" stop-color="#3150c7"/><stop offset="1" stop-color="#4930ae"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe36a"/><stop offset="1" stop-color="#ffad24"/></linearGradient>
+</defs>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/>
+<g fill="none" stroke="#fff" stroke-width="7" opacity=".78"><path d="M83 234A174 174 0 0 1 429 234M96 326a174 174 0 0 0 320 0"/></g>
+<g fill="#fff" opacity=".9"><circle cx="114" cy="119" r="9"/><circle cx="398" cy="150" r="8"/><circle cx="103" cy="375" r="7"/><circle cx="413" cy="361" r="8"/></g>
+<g stroke="#10366f" stroke-width="10" stroke-linejoin="round"><path d="M94 190h48v18h-48z" fill="#53e3bd"/><path d="M109 175h18v48h-18z" fill="#53e3bd"/><path d="M365 175l36 36m0-36-36 36" fill="none" stroke="#ffd34d" stroke-width="15"/></g>
+<g fill="url(#gold)" stroke="#fff0a2" stroke-width="10" stroke-linejoin="round">
+ <path d="M166 155h180v155c0 44-34 78-78 78h-24c-44 0-78-34-78-78z"/>
+ <path d="M165 183c-45-18-73 4-74 48-1 35 19 57 58 58" fill="none" stroke-width="31"/>
+ <path d="M347 183c45-18 73 4 74 48 1 35-19 57-58 58" fill="none" stroke-width="31"/>
+ <path d="M230 380h52v56h-52z"/><path d="M193 433h126v25H193z"/>
+</g>
+<path d="m256 184 17 35 39 6-28 27 7 39-35-19-35 19 7-39-28-27 39-6z" fill="#fff"/>
+<rect x="114" y="455" width="284" height="42" rx="21" fill="#0d2d64" stroke="#ffce45" stroke-width="7"/>
+<text x="256" y="486" font-family="Arial,sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#fff">MATH DASH</text>
+<g fill="#ffd34d" stroke="#10366f" stroke-width="7"><path d="M72 344h42v13H72zM86 330h14v42H86z"/><path d="M409 350h42v13h-42zM423 336h14v42h-14z"/></g>
+</svg>

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#10172d" />
+  <meta name="theme-color" content="#1676d2" />
   <meta name="description" content="بازی آموزشی تمرینی محاسبات ریاضی؛ ساخته آرش سلیمی" />
   <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <title>محاسبات ریاضی | MATH DASH</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
@@ -42,11 +43,82 @@
     .leader-row{display:flex;justify-content:space-between;padding:10px 3px;border-bottom:1px solid #ffffff12;font-size:12px}.leader-row:last-child{border:0}
     footer{text-align:center;color:#8090b5;font-size:10px;margin-top:23px;line-height:2}
     @media(max-width:380px){.app{padding:16px 12px}.hero h2{font-size:23px}.question h2{font-size:30px}.panel{padding:16px}}
+
+:root{color:#17345f;background:#dff5ff}
+body{color:#17345f;background:radial-gradient(circle at 8% 7%,#ffffffd9 0 3%,transparent 3.4%),radial-gradient(circle at 92% 14%,#fff7c7aa 0 2.2%,transparent 2.7%),linear-gradient(180deg,#55baf7 0%,#bceaff 40%,#e9faff 100%);background-attachment:fixed}
+.app{max-width:680px;padding-top:18px}header{margin-bottom:16px}
+.logo{width:54px;height:54px;border-radius:18px;background:linear-gradient(145deg,#fff06a,#ff9b38 55%,#ff6b63);color:#fff;font-size:31px;text-shadow:0 2px 0 #d66b22;box-shadow:0 7px 0 #d46d36,0 12px 25px #1767a54a;border:2px solid #fff}
+h1{color:#103d76;text-shadow:0 1px #fff}.en{color:#fff;text-shadow:0 1px 4px #14508c;font-size:11px}
+.version{color:#12477d;background:#ffffffa8;border:1px solid #fff}
+.panel{background:linear-gradient(145deg,#ffffffed,#eaf8ffed);border:2px solid #fff;border-radius:26px;box-shadow:0 10px 0 #80c8ed,0 18px 35px #246a9b30;backdrop-filter:blur(10px)}
+.hero{background:linear-gradient(130deg,#0876d7 0%,#23a9e8 52%,#2866d2 100%);border:3px solid #fff;box-shadow:0 9px 0 #1454a0,0 18px 36px #165ca34d;color:#fff}
+.hero:before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#ffffff16;right:-75px;top:-100px;box-shadow:-310px 170px 0 -65px #ffffff18}
+.hero:after{content:"✦";font-size:132px;color:#ffffff26;left:15px;top:-22px}
+.eyebrow{color:#fff18a;text-shadow:0 1px 3px #174f87}.hero h2{font-size:29px;line-height:1.45;text-shadow:0 3px 0 #13599a,0 5px 12px #003e7b66}
+.hero p{color:#e8f8ff;font-size:14px;line-height:1.9}
+.primary{background:linear-gradient(180deg,#a6f45d,#48cf36 60%,#22a62d);color:#103f27;border:2px solid #efffcd;border-bottom:5px solid #198b35;border-radius:18px;padding:14px 22px;font-size:15px;text-shadow:0 1px #ffffffa0;box-shadow:0 7px 18px #2a9b4c40}
+.primary:active,.ghost:active,.mode:active,.answer:active{transform:translateY(2px)}
+.ghost{color:#164879;background:linear-gradient(180deg,#fff,#d9f1ff);border:1px solid #9bd4f1;border-bottom:4px solid #80b8da;border-radius:15px}
+.section-title{color:#11477e;font-size:16px;text-shadow:0 1px #fff}.modes{gap:12px}
+.mode{position:relative;overflow:hidden;color:#163b67;background:linear-gradient(145deg,#fff,#e7f7ff);border:2px solid #fff;border-bottom:5px solid #a9d7ed;border-radius:20px;min-height:92px;box-shadow:0 5px 14px #246c9b1a}
+.mode:after{content:"";position:absolute;width:58px;height:58px;border-radius:50%;background:#ffffff65;left:-16px;top:-20px}
+.mode .symbol{font-size:27px;filter:drop-shadow(0 2px 1px #8bb7d3)}.mode strong{font-size:15px;color:#173e70}.mode small{color:#54779b;font-size:11px}
+.mode:nth-child(1){background:linear-gradient(145deg,#fff9d8,#ffe89b);border-bottom-color:#e5b94b}
+.mode:nth-child(2){background:linear-gradient(145deg,#e2fff0,#aaf2c9);border-bottom-color:#54c78d}
+.mode:nth-child(3){background:linear-gradient(145deg,#e8f5ff,#a9d9ff);border-bottom-color:#5ea6e5}
+.mode:nth-child(4){background:linear-gradient(145deg,#f4eaff,#d7b8ff);border-bottom-color:#9e73dc}
+.mode:nth-child(5){background:linear-gradient(145deg,#fff0e8,#ffc9a8);border-bottom-color:#e99a65}
+.mode:nth-child(6){background:linear-gradient(145deg,#fff0f6,#ffc7df);border-bottom-color:#e77fac}
+.mode.active{outline:3px solid #ffbe35;border-color:#fff;box-shadow:0 0 0 5px #ffcf5a50,0 7px 16px #276ca433}
+.settings{gap:14px}.field label{color:#1c5688;font-size:12px;font-weight:900}
+select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:14px;padding:12px;font-size:13px;font-weight:800}
+.utility-row{flex-wrap:wrap}.utility-row button{min-width:0;font-size:12px}
+.game-top{gap:8px}.stat{background:linear-gradient(145deg,#fff,#dff4ff);border:2px solid #fff;border-bottom:4px solid #a6d4ed;border-radius:17px;box-shadow:0 5px 12px #256b9d1a}
+.stat small{color:#35668e;font-size:11px;font-weight:800}.stat b{color:#164b83;font-size:22px;text-shadow:0 1px #fff}
+.progress{height:12px;background:#ffffffb8;border:2px solid #fff;box-shadow:inset 0 1px 3px #3675a533}
+.progress span{background:linear-gradient(90deg,#4ee6a1,#b5ed45,#ffd34e);border-radius:9px}
+#game .panel{background:linear-gradient(155deg,#fff,#e9f8ff)}
+.question{padding:22px 10px 18px}.question .tag{display:inline-block;color:#fff;background:linear-gradient(90deg,#7c4bd9,#3978e7);padding:6px 14px;border-radius:30px;font-weight:900;box-shadow:0 3px 0 #254b9c}
+.question h2{display:block;direction:ltr;unicode-bidi:isolate;color:#163e7a;background:linear-gradient(180deg,#fff9d7,#ffe69a);border:3px solid #fff;border-bottom:6px solid #e7bd54;border-radius:22px;padding:18px 8px;margin:16px 0;font-size:clamp(30px,8vw,45px);letter-spacing:1px;text-shadow:0 2px #fff}
+.math-expression{direction:ltr;unicode-bidi:isolate;white-space:nowrap}.question-mark{display:inline-block;direction:rtl;unicode-bidi:isolate;color:#e83952;font-size:1.18em;text-shadow:0 2px #fff;vertical-align:-1px;margin-inline-start:3px}
+.question p{color:#426c91;font-size:13px;font-weight:800}.answers{gap:12px}
+.answer{background:linear-gradient(180deg,#51c8ff,#1689e8);border:2px solid #fff;border-bottom:5px solid #1168b5;border-radius:18px;color:#fff;font-size:25px;text-shadow:0 2px 2px #14518b;box-shadow:0 5px 12px #236da533;min-height:66px}
+.answer:nth-child(2){background:linear-gradient(180deg,#9ce95d,#3cbb3e);border-bottom-color:#218b30}
+.answer:nth-child(3){background:linear-gradient(180deg,#d39aff,#8b4be1);border-bottom-color:#6230a8}
+.answer:nth-child(4){background:linear-gradient(180deg,#ffbf57,#f18a24);border-bottom-color:#bd5b12}
+.answer.correct{background:linear-gradient(180deg,#8cf0bd,#21b66b);border-color:#fff;border-bottom-color:#11834b;color:#063f29}
+.answer.wrong{background:linear-gradient(180deg,#ff9aa6,#e94b63);border-color:#fff;border-bottom-color:#b42b48}
+.feedback{color:#185b8c;font-size:14px}.motivation-pill{align-self:center;flex:1;text-align:center;padding:10px 8px;color:#89510a;background:#fff3bd;border:1px solid #ffd65c;border-radius:14px;font-size:11px;font-weight:900}
+.result{background:linear-gradient(145deg,#fff8d7,#fff,#e4f7ff)}.result .big{font-size:58px;filter:drop-shadow(0 4px 3px #e7b844)}
+.result h2{color:#15518b}.result p{color:#41698d;font-weight:700}
+.result-stats div{background:linear-gradient(145deg,#fff,#dff3ff);border:1px solid #b9e0f3;border-radius:16px}
+.result-stats b{color:#14518a}.result-stats small{color:#52789a;font-weight:800}
+.leader-row{color:#194d7c;border-bottom-color:#b8dff1;font-size:13px}footer{color:#3b7095;font-weight:700}
+@media(max-width:390px){.hero h2{font-size:24px}.utility-row button{font-size:11px;padding:9px 10px}.question h2{font-size:30px}}
+
+
+.head-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.head-btn{border:1px solid #fff;background:linear-gradient(180deg,#fff,#e6f5ff);color:#174c80;border-radius:13px;padding:8px 10px;font-size:11px;font-weight:900;box-shadow:0 3px 0 #9ccce7}
+#settingsPanel{display:block}#settingsPanel.collapsed{display:none}
+.daily-card{margin-top:18px;padding:18px;border:2px solid #fff;border-radius:23px;background:linear-gradient(145deg,#fff,#f4fbff);box-shadow:0 8px 0 #b6dff2,0 15px 28px #286c9b22}
+.daily-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#164d82;font-size:15px;font-weight:900;flex-wrap:wrap}
+.daily-badge{background:#fff1bd;color:#8b5b0b;border:1px solid #ffda68;border-radius:30px;padding:6px 10px;font-size:10px}
+.daily-card p{color:#50779a;font-size:12px;line-height:1.8;margin:12px 0}
+.final-challenge{width:100%;border:2px solid #fff;border-bottom:5px solid #bd5d28;border-radius:16px;padding:13px;color:#fff;font-weight:900;font-size:14px;background:linear-gradient(105deg,#ff9a35 0%,#ffbd43 42%,#258ce8 100%);text-shadow:0 2px 3px #743b2b66;box-shadow:0 7px 16px #d37d3840}
+.final-challenge:active{transform:translateY(2px)}
+.mode[data-mode="add"]{background:linear-gradient(145deg,#e8f5ff,#a9d9ff);border-bottom-color:#5ea6e5}
+.mode[data-mode="subtract"]{background:linear-gradient(145deg,#e0fff8,#a5f0df);border-bottom-color:#51c6a9}
+.mode[data-mode="multiply"]{background:linear-gradient(145deg,#fff0df,#ffc18a);border-bottom-color:#e89b54}
+.mode[data-mode="divide"]{background:linear-gradient(145deg,#e7ffed,#a9edbd);border-bottom-color:#5dbb7c}
+.mode[data-mode="tables"]{background:linear-gradient(145deg,#f6edff,#d8c0ff);border-bottom-color:#a080d7}
+.mode[data-mode="mixed"]{background:linear-gradient(145deg,#fff9d8,#ffe89b);border-bottom-color:#e5b94b}
+@media(max-width:420px){header{align-items:flex-start}.head-actions{max-width:60%}.head-btn{font-size:10px;padding:7px 8px}.version{display:none}.daily-card{padding:15px}}
+
   </style>
 </head>
 <body>
 <div class="app">
-  <header><div class="brand"><div class="logo">÷</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="version">نسخه ۰.۱.۱</div></header>
+  <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="head-actions"><button class="head-btn" id="leaderBtn">🏆 رتبه‌بندی</button><button class="head-btn" id="settingsBtn" aria-expanded="false">⚙️ تنظیمات</button><span class="version">۰.۱.۲</span></div></header>
   <main>
     <section id="home" class="screen home show">
       <div class="panel hero"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><button class="primary" id="start">شروع بازی ←</button></div>
@@ -60,18 +132,19 @@
         <button class="mode" data-mode="tables"><span class="symbol">📚</span><strong>جدول ضرب</strong><small>مرور جدول‌های ضرب</small></button>
       </div>
       <div class="section-title">تنظیمات تمرین</div>
-      <div class="panel"><div class="settings">
+      <div class="panel" id="settingsPanel"><div class="settings">
         <div class="field"><label for="level">سطح دشواری</label><select id="level"><option value="easy">آسان</option><option value="normal" selected>متوسط</option><option value="hard">پیشرفته</option></select></div>
         <div class="field"><label for="range">بازه اعداد</label><select id="range"><option value="10">۱ تا ۱۰</option><option value="20" selected>۱ تا ۲۰</option></select></div>
         <div class="field"><label for="duration">زمان بازی</label><select id="duration"><option value="60">۱ دقیقه</option><option value="120" selected>۲ دقیقه</option><option value="180">۳ دقیقه</option></select></div>
         <div class="field"><label for="digits">نمایش اعداد</label><select id="digits"><option value="fa" selected>فارسی</option><option value="en">انگلیسی</option></select></div>
-      </div><div class="start-row"><button class="ghost" id="leaderBtn">🏆 رکوردها</button><button class="ghost" id="soundBtn">🔊 صدا: روشن</button></div></div>
+      </div><div class="start-row utility-row"><button class="ghost" id="musicBtn" aria-pressed="true">🎵 موسیقی: روشن</button><button class="ghost" id="soundBtn" aria-pressed="true">🔊 صدا: روشن</button></div></div>
+      <div class="daily-card"><div class="daily-top"><span>🌟 چالش روزانه</span><span class="daily-badge">هدف امروز: ۴۰ پاسخ درست</span></div><p>هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.</p><button class="final-challenge" id="dailyChallenge">🚀 ورود به چالش نهایی</button></div>
     </section>
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div></div>
       <div class="progress"><span id="bar"></span></div>
-      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem">۸ + ۷ = ؟</h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
-      <div class="start-row"><button class="ghost" id="quit">پایان بازی</button></div>
+      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="rtl">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
+      <div class="start-row"><button class="ghost" id="quit">⏸ پایان بازی</button><div class="motivation-pill">⭐ سریع فکر کن، دقیق جواب بده!</div></div>
     </section>
     <section id="result" class="screen"><div class="panel result"><div class="big">🏅</div><div class="eyebrow">آفرین! تمرین به پایان رسید</div><h2>نتیجه بازی تو</h2><div class="result-stats"><div><b id="finalScore">۰</b><small>امتیاز</small></div><div><b id="finalHits">۰</b><small>پاسخ درست</small></div><div><b id="finalCount">۰</b><small>کل پرسش‌ها</small></div></div><p id="resultMessage"></p><button class="primary" id="again">بازی دوباره</button> <button class="ghost" id="homeBtn">خانه</button></div></section>
     <section id="leaders" class="screen"><div class="panel"><div class="section-title" style="margin-top:0">🏆 ده رکورد برتر</div><div id="leaderList"></div><div class="start-row"><button class="ghost" id="clearLeaders">پاک کردن رکوردها</button><button class="primary" id="backHome">بازگشت</button></div></div></section>
@@ -81,15 +154,21 @@
 <script>
 (()=>{
  const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
- const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,last:null};
+ const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0,challengeGoal:0};
  const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
  const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
  const num=n=>$('digits').value==='fa'?toFa(n):String(n);
  const show=id=>document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('show',s.id===id));
  const rand=n=>Math.floor(Math.random()*n)+1;
- function beep(ok){if(!state.sound)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?660:190;g.gain.value=.07;o.start();o.stop(c.currentTime+.12);o.onended=()=>c.close()}catch(e){}}
+ function audioContext(){if(!state.audio){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;state.audio=new C()}if(state.audio.state==='suspended')state.audio.resume();return state.audio}
+ function tone(freq,duration=.16,volume=.035,type='sine'){const c=audioContext();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);g.gain.setValueAtTime(volume,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+duration);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+duration)}
+ function beep(ok){if(!state.sound)return;tone(ok?784:196,ok ? .18 : .22,ok ? .065 : .045,ok?'triangle':'sine')}
+ const melody=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,523.25,587.33,659.25,783.99];
+ function startMusic(){if(!state.music||state.musicTimer!==null)return;audioContext();const play=()=>{if(!state.music)return;const n=melody[state.musicStep%melody.length];tone(n,.27,.018,'sine');if(state.musicStep%4===0)tone(n/2,.32,.012,'triangle');state.musicStep++};play();state.musicTimer=setInterval(play,360)}
+ function stopMusic(){if(state.musicTimer!==null)clearInterval(state.musicTimer);state.musicTimer=null}
  document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.mode=b.dataset.mode});
- $('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 صدا: روشن':'🔇 صدا: خاموش'};
+ $('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 صدا: روشن':'🔇 صدا: خاموش';$('soundBtn').setAttribute('aria-pressed',String(state.sound));if(state.sound)beep(true)};
+ $('musicBtn').onclick=()=>{state.music=!state.music;$('musicBtn').textContent=state.music?'🎵 موسیقی: روشن':'🔇 موسیقی: خاموش';$('musicBtn').setAttribute('aria-pressed',String(state.music));if(state.music)startMusic();else stopMusic()};
  function question(){
   let max=+$('range').value,level=$('level').value;if(level==='easy')max=Math.min(max,10);if(level==='hard')max*=2;
   let mode=state.mode==='mixed'?['add','subtract','multiply','divide'][rand(4)-1]:state.mode;
@@ -101,17 +180,19 @@
   return {a,b,ans,op};
  }
  function makeQuestion(){
-  state.locked=false;state.last=question();$('problem').textContent=num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = ؟';$('modeLabel').textContent=names[state.mode];
+  state.locked=false;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="rtl">؟</span></bdi>';$('modeLabel').textContent=names[state.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
  }
- function answer(btn,v){if(state.locked)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){state.hits++;state.score+=10;btn.classList.add('correct');$('feedback').textContent='آفرین! پاسخ درست بود 🌟';$('feedback').style.color='#4de0ad'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans);$('feedback').style.color='#ff9aa5';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);setTimeout(()=>{if(state.left>0 && state.timer!==null)makeQuestion()},550)}
+ function answer(btn,v){if(state.locked||state.timer===null||state.left<=0)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){const elapsed=performance.now()-state.questionAt;const bonus=Math.max(0,Math.min(5,Math.ceil((5000-elapsed)/1000)));state.hits++;state.score+=10+bonus;btn.classList.add('correct');$('feedback').textContent=bonus?'آفرین! '+num(10+bonus)+' امتیاز گرفتی؛ سرعتت عالی بود! 🌟':'آفرین! پاسخ درست بود؛ ۱۰ امتیاز ⭐';$('feedback').style.color='#16864d'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans)+' · دوباره تلاش کن!';$('feedback').style.color='#d83b56';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);if(state.challengeGoal&&state.hits>=state.challengeGoal){finish();return}setTimeout(()=>{if(state.left>0&&state.timer!==null)makeQuestion()},650)}
  function tick(){state.left--;let m=Math.floor(state.left/60),s=state.left%60;$('time').textContent=num(String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));$('bar').style.width=(state.left/state.total*100)+'%';if(state.left<=0)finish()}
- function start(){clearInterval(state.timer);state.score=state.hits=state.count=0;state.total=state.left=+$('duration').value;$('score').textContent=$('hits').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,1000)}
- function finish(){clearInterval(state.timer);state.timer=null;show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('resultMessage').textContent=state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!';let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString('fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
+ function start(challenge=false){clearInterval(state.timer);state.challengeGoal=challenge?40:0;state.score=state.hits=state.count=0;state.total=state.left=challenge?180:+$('duration').value;$('score').textContent=$('hits').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,1000);if(state.music)startMusic()}
+ function finish(){clearInterval(state.timer);state.timer=null;stopMusic();show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('resultMessage').textContent=state.challengeGoal?(state.hits>=state.challengeGoal?'🏆 چالش روزانه را کامل کردی! قهرمان محاسبات شدی.':'چالش تمام شد؛ '+num(state.hits)+' پاسخ درست ثبت کردی. فردا دوباره تلاش کن!'):(state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!');let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString('fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
  function leaders(){let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');$('leaderList').innerHTML=rows.length?rows.map((r,i)=>'<div class="leader-row"><span>'+(i+1)+'. '+r.date+'</span><b>'+num(r.score)+' امتیاز · '+num(r.hits)+' درست</b></div>').join(''):'<p class="muted">هنوز رکوردی ثبت نشده است.</p>';show('leaders')}
- $('start').onclick=start;$('again').onclick=start;$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
+ $('settingsBtn').onclick=()=>{const panel=$('settingsPanel'),hidden=panel.classList.toggle('collapsed');$('settingsBtn').setAttribute('aria-expanded',String(!hidden));if(!hidden)panel.scrollIntoView({behavior:'smooth',block:'nearest'})};
+ $('dailyChallenge').onclick=()=>{if(state.music)startMusic();start(true)};
+ $('start').onclick=()=>{if(state.music)startMusic();start(false)};$('again').onclick=()=>start(false);$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
 })();
 </script>
 </body></html>

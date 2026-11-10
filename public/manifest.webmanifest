@@ -6,7 +6,15 @@
   "dir": "rtl",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#10172d",
-  "theme_color": "#10172d",
-  "orientation": "portrait"
+  "background_color": "#dff5ff",
+  "theme_color": "#1676d2",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
