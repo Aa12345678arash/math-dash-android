@@ -135,15 +135,21 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
 <script>
 (()=>{
  const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
- const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,last:null};
+ const state={mode:'mixed',score:0,hits:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0};
  const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
  const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
  const num=n=>$('digits').value==='fa'?toFa(n):String(n);
  const show=id=>document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('show',s.id===id));
  const rand=n=>Math.floor(Math.random()*n)+1;
- function beep(ok){if(!state.sound)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?660:190;g.gain.value=.07;o.start();o.stop(c.currentTime+.12);o.onended=()=>c.close()}catch(e){}}
+ function audioContext(){if(!state.audio){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;state.audio=new C()}if(state.audio.state==='suspended')state.audio.resume();return state.audio}
+ function tone(freq,duration=.16,volume=.035,type='sine'){const c=audioContext();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);g.gain.setValueAtTime(volume,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+duration);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+duration)}
+ function beep(ok){if(!state.sound)return;tone(ok?784:196,ok ? .18 : .22,ok ? .065 : .045,ok?'triangle':'sine')}
+ const melody=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,523.25,587.33,659.25,783.99];
+ function startMusic(){if(!state.music||state.musicTimer!==null)return;audioContext();const play=()=>{if(!state.music)return;const n=melody[state.musicStep%melody.length];tone(n,.27,.018,'sine');if(state.musicStep%4===0)tone(n/2,.32,.012,'triangle');state.musicStep++};play();state.musicTimer=setInterval(play,360)}
+ function stopMusic(){if(state.musicTimer!==null)clearInterval(state.musicTimer);state.musicTimer=null}
  document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.mode=b.dataset.mode});
- $('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 صدا: روشن':'🔇 صدا: خاموش'};
+ $('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 صدا: روشن':'🔇 صدا: خاموش';$('soundBtn').setAttribute('aria-pressed',String(state.sound));if(state.sound)beep(true)};
+ $('musicBtn').onclick=()=>{state.music=!state.music;$('musicBtn').textContent=state.music?'🎵 موسیقی: روشن':'🔇 موسیقی: خاموش';$('musicBtn').setAttribute('aria-pressed',String(state.music));if(state.music)startMusic();else stopMusic()};
  function question(){
   let max=+$('range').value,level=$('level').value;if(level==='easy')max=Math.min(max,10);if(level==='hard')max*=2;
   let mode=state.mode==='mixed'?['add','subtract','multiply','divide'][rand(4)-1]:state.mode;
