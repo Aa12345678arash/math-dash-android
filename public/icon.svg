@@ -1,20 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <defs>
- <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#176be7"/><stop offset=".55" stop-color="#3150c7"/><stop offset="1" stop-color="#4930ae"/></linearGradient>
- <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe36a"/><stop offset="1" stop-color="#ffad24"/></linearGradient>
+ <linearGradient id="sky" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#43c5ff"/><stop offset=".52" stop-color="#277de0"/><stop offset="1" stop-color="#4936b7"/></linearGradient>
+ <linearGradient id="shirt" x2="0" y2="1"><stop stop-color="#ffe05a"/><stop offset="1" stop-color="#ff8c32"/></linearGradient>
+ <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fff58c"/><stop offset="1" stop-color="#ff9f16"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feGaussianBlur stdDeviation="10"/></filter>
 </defs>
-<rect width="512" height="512" rx="112" fill="url(#bg)"/>
-<g fill="none" stroke="#fff" stroke-width="7" opacity=".78"><path d="M83 234A174 174 0 0 1 429 234M96 326a174 174 0 0 0 320 0"/></g>
-<g fill="#fff" opacity=".9"><circle cx="114" cy="119" r="9"/><circle cx="398" cy="150" r="8"/><circle cx="103" cy="375" r="7"/><circle cx="413" cy="361" r="8"/></g>
-<g stroke="#10366f" stroke-width="10" stroke-linejoin="round"><path d="M94 190h48v18h-48z" fill="#53e3bd"/><path d="M109 175h18v48h-18z" fill="#53e3bd"/><path d="M365 175l36 36m0-36-36 36" fill="none" stroke="#ffd34d" stroke-width="15"/></g>
-<g fill="url(#gold)" stroke="#fff0a2" stroke-width="10" stroke-linejoin="round">
- <path d="M166 155h180v155c0 44-34 78-78 78h-24c-44 0-78-34-78-78z"/>
- <path d="M165 183c-45-18-73 4-74 48-1 35 19 57 58 58" fill="none" stroke-width="31"/>
- <path d="M347 183c45-18 73 4 74 48 1 35-19 57-58 58" fill="none" stroke-width="31"/>
- <path d="M230 380h52v56h-52z"/><path d="M193 433h126v25H193z"/>
-</g>
-<path d="m256 184 17 35 39 6-28 27 7 39-35-19-35 19 7-39-28-27 39-6z" fill="#fff"/>
-<rect x="114" y="455" width="284" height="42" rx="21" fill="#0d2d64" stroke="#ffce45" stroke-width="7"/>
-<text x="256" y="486" font-family="Arial,sans-serif" font-size="28" font-weight="900" text-anchor="middle" fill="#fff">MATH DASH</text>
-<g fill="#ffd34d" stroke="#10366f" stroke-width="7"><path d="M72 344h42v13H72zM86 330h14v42H86z"/><path d="M409 350h42v13h-42zM423 336h14v42h-14z"/></g>
+<rect width="512" height="512" rx="112" fill="url(#sky)"/>
+<circle cx="390" cy="112" r="58" fill="#fff6a5" opacity=".9"/>
+<path d="M0 355Q120 270 240 355T512 330V512H0Z" fill="#67d56e"/>
+<path d="M0 415Q130 340 260 410T512 390V512H0Z" fill="#31b86a"/>
+<ellipse cx="250" cy="454" rx="150" ry="24" fill="#123e83" opacity=".3" filter="url(#shadow)"/>
+<!-- friendly student mascot, simplified from the original mascot illustration -->
+<path d="M92 478Q92 355 160 326H345Q415 366 416 478Z" fill="url(#shirt)" stroke="#fff" stroke-width="15"/>
+<path d="M151 345L254 410L354 345" fill="#fff" opacity=".95"/>
+<circle cx="254" cy="213" r="137" fill="#f5bd88" stroke="#fff" stroke-width="15"/>
+<path d="M118 207Q86 75 218 56Q358 30 389 176Q328 123 280 145Q201 91 118 207Z" fill="#63331f" stroke="#fff" stroke-width="13"/>
+<ellipse cx="205" cy="220" rx="16" ry="24" fill="#26364e"/><ellipse cx="304" cy="220" rx="16" ry="24" fill="#26364e"/>
+<circle cx="210" cy="211" r="6" fill="#fff"/><circle cx="309" cy="211" r="6" fill="#fff"/>
+<path d="M218 275Q256 310 294 273" fill="none" stroke="#9b3c39" stroke-width="12" stroke-linecap="round"/>
+<circle cx="176" cy="264" r="17" fill="#f18c7c" opacity=".7"/><circle cx="336" cy="264" r="17" fill="#f18c7c" opacity=".7"/>
+<!-- small trophy badge inspired by the companion trophy illustration -->
+<circle cx="390" cy="382" r="83" fill="#174b9b" stroke="#fff" stroke-width="12"/>
+<path d="M354 329H426V382Q426 423 390 430Q354 423 354 382Z" fill="url(#gold)" stroke="#fff5bd" stroke-width="9"/>
+<path d="M354 344H330Q328 387 367 390M426 344H450Q452 387 413 390" fill="none" stroke="#ffda58" stroke-width="15" stroke-linecap="round"/>
+<path d="M390 430V451M365 455H415" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+<path d="M390 345L399 364L420 367L405 382L409 403L390 393L371 403L375 382L360 367L381 364Z" fill="#fff"/>
+<g fill="#fff6a5"><path d="M75 110l10 24 24 10-24 10-10 24-10-24-24-10 24-10Z"/><circle cx="442" cy="230" r="9"/><circle cx="78" cy="300" r="7"/></g>
 </svg>
