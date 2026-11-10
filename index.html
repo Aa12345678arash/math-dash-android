@@ -130,6 +130,22 @@ html[lang="en"] .hero:after{left:auto;right:15px}
 html[lang="en"] .question h2,.math-expression{direction:ltr}
 html[lang="en"] .start-row{direction:ltr}
 
+  
+/* Real bundled illustrated assets */
+.hero{background-image:linear-gradient(90deg,#0876d7f2 0%,#168fe9d9 58%,#168fe900 100%),url('/math-dash-scene.svg');background-size:cover;background-position:center}
+.hero-mascot{position:absolute;z-index:1;width:clamp(112px,31vw,190px);height:auto;right:5px;bottom:0;filter:drop-shadow(0 7px 8px #154d8a55);pointer-events:none}
+.hero .eyebrow,.hero h2,.hero p,.hero button{position:relative;z-index:2;max-width:78%}
+.daily-card{position:relative;overflow:hidden;padding-inline-end:112px;min-height:142px}
+.daily-trophy{position:absolute;width:110px;height:110px;right:8px;top:18px;object-fit:contain;pointer-events:none}
+#languageBtn{position:relative;z-index:10;touch-action:manipulation}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:disabled{opacity:.55}
+html[lang="en"] .hero-mascot{right:auto;left:5px}
+html[lang="en"] .hero .eyebrow,html[lang="en"] .hero h2,html[lang="en"] .hero p,html[lang="en"] .hero button{margin-left:auto}
+html[lang="en"] .daily-card{padding-inline-start:112px;padding-inline-end:18px}
+html[lang="en"] .daily-trophy{right:auto;left:8px}
+@media(max-width:420px){.hero-mascot{width:118px;right:-2px}.hero .eyebrow,.hero h2,.hero p,.hero button{max-width:76%}.daily-card{padding-inline-end:95px}.daily-trophy{width:94px;height:94px;top:24px}}
+
   </style>
 </head>
 <body>
@@ -137,7 +153,7 @@ html[lang="en"] .start-row{direction:ltr}
   <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="head-actions"><button class="head-btn" id="leaderBtn">🏆 رتبه‌بندی</button><button class="head-btn" id="settingsBtn" aria-expanded="false">⚙️ تنظیمات</button><button class="head-btn" id="languageBtn" type="button" aria-label="Change language">English</button><span class="version">۰.۱.۲</span></div></header>
   <main>
     <section id="home" class="screen home show">
-      <div class="panel hero"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><button class="primary" id="start">شروع بازی ←</button></div>
+      <div class="panel hero"><img class="hero-mascot" src="/math-dash-mascot.svg" alt="Math Dash student mascot"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><button class="primary" id="start">شروع بازی ←</button></div>
       <div class="section-title">یک روش تمرین انتخاب کن</div>
       <div class="modes" id="modes">
         <button class="mode active" data-mode="mixed"><span class="symbol">🎯</span><strong>ترکیبی</strong><small>همه عملیات با هم</small></button>
@@ -154,7 +170,7 @@ html[lang="en"] .start-row{direction:ltr}
         <div class="field"><label for="duration">زمان بازی</label><select id="duration"><option value="60">۱ دقیقه</option><option value="120" selected>۲ دقیقه</option><option value="180">۳ دقیقه</option></select></div>
         <div class="field"><label for="digits">نمایش اعداد</label><select id="digits"><option value="fa" selected>فارسی</option><option value="en">انگلیسی</option></select></div>
       </div><div class="start-row utility-row"><button class="ghost" id="musicBtn" aria-pressed="true">🎵 موسیقی: روشن</button><button class="ghost" id="soundBtn" aria-pressed="true">🔊 صدا: روشن</button></div></div>
-      <div class="daily-card"><div class="daily-top"><span>🌟 چالش روزانه</span><span class="daily-badge">هدف امروز: ۴۰ پاسخ درست</span></div><p>هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.</p><button class="final-challenge" id="dailyChallenge">🚀 ورود به چالش نهایی</button></div>
+      <div class="daily-card"><img class="daily-trophy" src="/math-dash-trophy.svg" alt="Trophy"><div class="daily-top"><span>🌟 چالش روزانه</span><span class="daily-badge">هدف امروز: ۴۰ پاسخ درست</span></div><p>هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.</p><button class="final-challenge" id="dailyChallenge">🚀 ورود به چالش نهایی</button></div>
     </section>
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div></div>
@@ -215,129 +231,48 @@ html[lang="en"] .start-row{direction:ltr}
 <script id="mathdash-bilingual">
 (()=>{
  const button=document.getElementById('languageBtn');
- if(!button||window.__mathDashBilingualReady)return;
- window.__mathDashBilingualReady=true;
- const pairs=[
- ['محاسبات ریاضی','Math Dash'],
- ['آماده‌ای سریع‌تر فکر کنی؟','Ready to think faster?'],
- ['تمرین کن، پاسخ بده،','Practice, answer,'],
- ['رکوردت را بشکن!','beat your record!'],
- ['با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.','Build your math skills with quick, fun games.'],
- ['شروع بازی','Start Game'],
- ['رتبه‌بندی','Leaderboard'],
- ['تنظیمات','Settings'],
- ['یک روش تمرین انتخاب کن','Choose a practice mode'],
- ['ترکیبی','Mixed'],
- ['همه عملیات با هم','All operations'],
- ['جمع سریع و دقیق','Fast and accurate addition'],
- ['جمع','Addition'],
- ['تفریق','Subtraction'],
- ['محاسبه اختلاف','Find the difference'],
- ['ضرب','Multiplication'],
- ['تقویت ضرب','Practice multiplication'],
- ['تقسیم','Division'],
- ['تقسیم بدون باقیمانده','Division with no remainder'],
- ['جدول ضرب','Times Tables'],
- ['مرور جدول‌های ضرب','Review multiplication tables'],
- ['تنظیمات تمرین','Practice Settings'],
- ['سطح دشواری','Difficulty'],
- ['آسان','Easy'],
- ['متوسط','Medium'],
- ['پیشرفته','Advanced'],
- ['بازه اعداد','Number Range'],
- ['۱ تا ۱۰','1 to 10'],
- ['۱ تا ۲۰','1 to 20'],
- ['زمان بازی','Game Duration'],
- ['۱ دقیقه','1 minute'],
- ['۲ دقیقه','2 minutes'],
- ['۳ دقیقه','3 minutes'],
- ['نمایش اعداد','Number Format'],
- ['فارسی','Persian'],
- ['انگلیسی','English'],
- ['موسیقی: روشن','Music: On'],
- ['موسیقی: خاموش','Music: Off'],
- ['صدا: روشن','Sound: On'],
- ['صدا: خاموش','Sound: Off'],
- ['چالش روزانه','Daily Challenge'],
- ['هدف امروز: ۴۰ پاسخ درست','Today’s goal: 40 correct answers'],
- ['هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.','Improve your speed and accuracy with a new daily challenge.'],
- ['ورود به چالش نهایی','Start Daily Challenge'],
- ['زمان باقی‌مانده','Time Left'],
- ['امتیاز','Score'],
- ['پاسخ درست','Correct'],
- ['تمرین ترکیبی','Mixed Practice'],
- ['پاسخ درست را انتخاب کن','Choose the correct answer'],
- ['پایان بازی','End Game'],
- ['سریع فکر کن، دقیق جواب بده!','Think fast, answer accurately!'],
- ['آفرین! تمرین به پایان رسید','Well done! Practice complete'],
- ['نتیجه بازی تو','Your Results'],
- ['کل پرسش‌ها','Total Questions'],
- ['بازی دوباره','Play Again'],
- ['خانه','Home'],
- ['ده رکورد برتر','Top 10 Scores'],
- ['پاک کردن رکوردها','Clear Scores'],
- ['بازگشت','Back'],
- ['بازی آموزشی تمرینی محاسبات ریاضی','Math calculation practice game'],
- ['پدیدآورنده: آرش سلیمی','Created by: Arash Salimi'],
- ['شناسه پروژه: MATH-DASH-001','Project ID: MATH-DASH-001'],
- ['هنوز رکوردی ثبت نشده است.','No scores recorded yet.'],
- ['آفرین!','Great job!'],
- ['امتیاز گرفتی؛ سرعتت عالی بود!','points! Excellent speed!'],
- ['امتیاز ⭐','points ⭐'],
- ['پاسخ درست بود؛','Correct answer;'],
- ['دوباره تلاش کن!','Try again!'],
- ['پاسخ درست: ','Correct answer: '],
- ['چالش روزانه را کامل کردی! قهرمان محاسبات شدی.','You completed the daily challenge! You are a Math Champion.'],
- ['چالش تمام شد؛ ','Challenge complete; '],
- [' پاسخ درست ثبت کردی. فردا دوباره تلاش کن!',' correct answers. Try again tomorrow!'],
- ['عالی بود! به تمرین ادامه بده.','Excellent! Keep practicing.'],
- ['هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!','Every practice makes you stronger. Try again!'],
- ['رتبه‌بندی','Leaderboard'],
- ['آمار و رکوردها','Stats & Records'],
- ['مشاهده پیشرفت','View Progress'],
- ['رقابت','Competition'],
- ['دوستان و جهان','Friends & World'],
- ['چالش روزانه','Daily Challenge'],
- ['موفقیت','Success']
- ];
- const faToEn=new Map(pairs);
- const enToFa=new Map(pairs.map(([fa,en])=>[en,fa]));
- function replaceAll(text,map){
-   const keys=[...map.keys()].sort((a,b)=>b.length-a.length);
-   for(const key of keys) if(key && text.includes(key)) text=text.split(key).join(map.get(key));
-   return text;
- }
- function translateNode(node,map){
-   if(node.nodeType===Node.TEXT_NODE){node.nodeValue=replaceAll(node.nodeValue,map);return;}
-   if(node.nodeType!==Node.ELEMENT_NODE)return;
-   for(const attr of ['placeholder','title','aria-label']) if(node.hasAttribute(attr)) node.setAttribute(attr,replaceAll(node.getAttribute(attr),map));
-   for(const child of [...node.childNodes]) translateNode(child,map);
+ if(!button)return;
+ const pairs=[["محاسبات ریاضی","Math Dash"],["آماده‌ای سریع‌تر فکر کنی؟","Ready to think faster?"],["تمرین کن، پاسخ بده،","Practice, answer,"],["رکوردت را بشکن!","beat your record!"],["با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.","Build your math skills with quick, fun games."],["شروع بازی","Start Game"],["رتبه‌بندی","Leaderboard"],["تنظیمات","Settings"],["یک روش تمرین انتخاب کن","Choose a practice mode"],["ترکیبی","Mixed"],["همه عملیات با هم","All operations"],["جمع سریع و دقیق","Fast and accurate addition"],["جمع","Addition"],["تفریق","Subtraction"],["محاسبه اختلاف","Find the difference"],["ضرب","Multiplication"],["تقویت ضرب","Practice multiplication"],["تقسیم","Division"],["تقسیم بدون باقیمانده","Division with no remainder"],["جدول ضرب","Times Tables"],["مرور جدول‌های ضرب","Review multiplication tables"],["تنظیمات تمرین","Practice Settings"],["سطح دشواری","Difficulty"],["آسان","Easy"],["متوسط","Medium"],["پیشرفته","Advanced"],["بازه اعداد","Number Range"],["۱ تا ۱۰","1 to 10"],["۱ تا ۲۰","1 to 20"],["زمان بازی","Game Duration"],["۱ دقیقه","1 minute"],["۲ دقیقه","2 minutes"],["۳ دقیقه","3 minutes"],["نمایش اعداد","Number Display"],["فارسی","Persian"],["انگلیسی","English"],["موسیقی: روشن","Music: On"],["موسیقی: خاموش","Music: Off"],["صدا: روشن","Sound: On"],["صدا: خاموش","Sound: Off"],["چالش روزانه","Daily Challenge"],["هدف امروز: ۴۰ پاسخ درست","Today’s goal: 40 correct answers"],["هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.","Improve your speed and accuracy with a new daily challenge."],["ورود به چالش نهایی","Start Daily Challenge"],["زمان باقی‌مانده","Time Left"],["امتیاز","Score"],["پاسخ درست","Correct"],["تمرین جمع","Addition Practice"],["تمرین تفریق","Subtraction Practice"],["تمرین ضرب","Multiplication Practice"],["تمرین تقسیم","Division Practice"],["تمرین ترکیبی","Mixed Practice"],["پاسخ درست را انتخاب کن","Choose the correct answer"],["پایان بازی","End Game"],["سریع فکر کن، دقیق جواب بده!","Think fast, answer accurately!"],["آفرین! تمرین به پایان رسید","Well done! Practice complete"],["نتیجه بازی تو","Your Results"],["کل پرسش‌ها","Total Questions"],["بازی دوباره","Play Again"],["خانه","Home"],["ده رکورد برتر","Top 10 Scores"],["پاک کردن رکوردها","Clear Scores"],["بازگشت","Back"],["بازی آموزشی تمرینی محاسبات ریاضی","Math calculation practice game"],["پدیدآورنده: آرش سلیمی","Created by: Arash Salimi"],["شناسه پروژه: MATH-DASH-001","Project ID: MATH-DASH-001"],["هنوز رکوردی ثبت نشده است.","No scores recorded yet."],["آفرین!","Great job!"],["امتیاز گرفتی؛ سرعتت عالی بود!","points! Excellent speed!"],["امتیاز ⭐","points ⭐"],["پاسخ درست بود؛","Correct answer;"],["دوباره تلاش کن!","Try again!"],["پاسخ درست: ","Correct answer: "],["چالش روزانه را کامل کردی! قهرمان محاسبات شدی.","You completed the daily challenge! You are a Math Champion."],["چالش تمام شد؛ ","Challenge complete; "],[" پاسخ درست ثبت کردی. فردا دوباره تلاش کن!"," correct answers. Try again tomorrow!"],["عالی بود! به تمرین ادامه بده.","Excellent! Keep practicing."],["هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!","Every practice makes you stronger. Try again!"],["۰۲:۰۰","02:00"]];
+ const faToEn=new Map(pairs),enToFa=new Map(pairs.map(([fa,en])=>[en,fa]));
+ let current='fa',busy=false;
+ try{current=localStorage.getItem('mathdash_language')==='en'?'en':'fa'}catch(e){}
+ const excluded=n=>n&&n.nodeType===1&&(/^(SCRIPT|STYLE|NOSCRIPT)$/).test(n.tagName);
+ function replaceText(s,map){for(const [a,b] of [...map.entries()].sort((x,y)=>y[0].length-x[0].length))if(a)s=s.split(a).join(b);return s}
+ function walk(node,map){
+  if(!node||excluded(node))return;
+  if(node.nodeType===3){const v=replaceText(node.nodeValue,map);if(v!==node.nodeValue)node.nodeValue=v;return}
+  if(node.nodeType!==1&&node.nodeType!==9)return;
+  if(node.nodeType===1){
+   for(const a of ['placeholder','title','aria-label'])if(node.hasAttribute(a)){const v=replaceText(node.getAttribute(a),map);if(v!==node.getAttribute(a))node.setAttribute(a,v)}
+  }
+  for(const child of Array.from(node.childNodes))walk(child,map);
  }
  function setLanguage(lang){
-   const english=lang==='en';
-   document.documentElement.lang=english?'en':'fa';
-   document.documentElement.dir=english?'ltr':'rtl';
-   document.body.dir=english?'ltr':'rtl';
-   translateNode(document.body,english?faToEn:enToFa);
-   document.title=english?'Math Dash | Math Practice Game':'محاسبات ریاضی | MATH DASH';
-   const meta=document.querySelector('meta[name="description"]');
-   if(meta)meta.content=english?'Math calculation practice game by Arash Salimi':'بازی آموزشی تمرینی محاسبات ریاضی؛ ساخته آرش سلیمی';
-   button.textContent=english?'فارسی':'English';
-   button.setAttribute('aria-label',english?'Switch to Persian':'Switch to English');
-   try{localStorage.setItem('mathdash_language',lang)}catch(e){}
+  if(busy)return;busy=true;current=lang;
+  const en=lang==='en',map=en?faToEn:enToFa;
+  document.documentElement.lang=lang;document.documentElement.dir=en?'ltr':'rtl';document.body.dir=en?'ltr':'rtl';
+  walk(document.body,map);
+  document.title=en?'Math Dash | Math Practice Game':'محاسبات ریاضی | MATH DASH';
+  const meta=document.querySelector('meta[name="description"]');
+  if(meta)meta.content=en?'Math calculation practice game by Arash Salimi':'بازی آموزشی تمرینی محاسبات ریاضی؛ ساخته آرش سلیمی';
+  button.textContent=en?'فارسی':'English';button.setAttribute('aria-label',en?'Switch to Persian':'Switch to English');
+  try{localStorage.setItem('mathdash_language',lang)}catch(e){}
+  busy=false;
  }
- let current='fa';
- try{current=localStorage.getItem('mathdash_language')==='en'?'en':'fa'}catch(e){}
- button.addEventListener('click',()=>{current=current==='fa'?'en':'fa';setLanguage(current)});
+ button.addEventListener('click',()=>setLanguage(current==='fa'?'en':'fa'));
  const observer=new MutationObserver(records=>{
-   const map=current==='en'?faToEn:enToFa;
-   for(const record of records){
-     if(record.type==='characterData')translateNode(record.target,map);
-     else for(const node of record.addedNodes)translateNode(node,map);
-   }
+  if(busy)return;
+  const map=current==='en'?faToEn:enToFa;
+  busy=true;
+  for(const record of records){
+   if(record.type==='characterData'){if(!excluded(record.target.parentElement))walk(record.target,map)}
+   else for(const node of record.addedNodes)if(!excluded(node))walk(node,map);
+  }
+  busy=false;
  });
  observer.observe(document.body,{subtree:true,childList:true,characterData:true});
  setLanguage(current);
+ window.mathDashSetLanguage=setLanguage;
 })();
 </script>
 
