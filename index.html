@@ -204,7 +204,7 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
 #game .panel{background-image:linear-gradient(180deg,#fffdf1ed 0%,#e9f8ffdf 100%),url('/math-dash-scene.svg');background-position:center bottom;background-size:cover;border:3px solid #fff;box-shadow:0 9px 0 #85c6e7,0 18px 32px #286c9b30}
 #game .question h2{direction:ltr;unicode-bidi:isolate;display:flex;align-items:center;justify-content:center;gap:.12em;min-height:94px}
 #game .math-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.13em;white-space:nowrap}
-.question-mark{direction:ltr!important;unicode-bidi:isolate!important;display:inline-block;flex:0 0 auto;line-height:1;font-family:Arial,Tahoma,sans-serif;font-weight:900;color:#e52f49;margin:0 0 0 2px;transform:none}
+.question-mark{direction:ltr!important;unicode-bidi:bidi-override!important;display:inline-block;flex:0 0 auto;line-height:1;font-family:Arial,Tahoma,sans-serif;font-weight:900;color:#e52f49;margin:0 0 0 2px;transform:none}
 #game .answers{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 #game .answer{min-height:72px;font-size:clamp(23px,6vw,30px);border-radius:20px}
 #game .feedback{min-height:54px}
@@ -251,7 +251,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
         <div class="field"><label for="duration">زمان بازی</label><select id="duration"><option value="60">۱ دقیقه</option><option value="120" selected>۲ دقیقه</option><option value="180">۳ دقیقه</option></select></div>
         <div class="field"><label for="digits">نمایش اعداد</label><select id="digits"><option value="fa" selected>فارسی</option><option value="en">انگلیسی</option></select></div>
       </div><div class="start-row utility-row"><button class="ghost" id="musicBtn" aria-pressed="true">🎵 موسیقی: روشن</button><button class="ghost" id="soundBtn" aria-pressed="true">🔊 صدا: روشن</button></div></div>
-      <div class="daily-card"><img class="daily-trophy" src="/math-dash-trophy.svg" alt="Trophy"><div class="daily-top"><span>🌟 چالش روزانه</span><span class="daily-badge">هدف امروز: ۴۰ پاسخ درست</span></div><p>هر روز با یک رقابت تازه، سرعت و دقت محاسباتت را بیشتر کن.</p><button class="final-challenge" id="dailyChallenge">🚀 ورود به چالش نهایی</button></div>
+      <div class="daily-card"><img class="daily-trophy" src="/math-dash-trophy.svg" alt="Trophy"><div class="daily-top"><span>🌟 چالش روزانه</span><span class="daily-badge">هدف امروز: ۴۰ پاسخ درست</span></div><p>هر روز از هر پنج بخش جمع، تفریق، ضرب، تقسیم و جدول ضرب سؤال پاسخ بده.</p><button class="final-challenge" id="dailyChallenge">🚀 ورود به چالش نهایی</button></div>
     </section>
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div><div class="stat wrong-stat"><small>پاسخ نادرست</small><b id="wrongs">۰</b></div></div>
@@ -268,7 +268,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 (()=>{
  const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
  const state={mode:'mixed',score:0,hits:0,wrong:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0,challengeGoal:0};
- const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
+ const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};\n const challengeSections=['add','subtract','multiply','divide','tables'];
  const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
  const num=n=>$('digits').value==='fa'?toFa(n):String(n);
  const show=id=>document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('show',s.id===id));
@@ -284,16 +284,16 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
  $('musicBtn').onclick=()=>{state.music=!state.music;$('musicBtn').textContent=state.music?'🎵 موسیقی: روشن':'🔇 موسیقی: خاموش';$('musicBtn').setAttribute('aria-pressed',String(state.music));if(state.music)startMusic();else stopMusic()};
  function question(){
   let max=+$('range').value,level=$('level').value;if(level==='easy')max=Math.min(max,10);if(level==='hard')max*=2;
-  let mode=state.mode==='mixed'?['add','subtract','multiply','divide'][rand(4)-1]:state.mode;
+  let mode=state.challengeGoal?challengeSections[state.hits%challengeSections.length]:(state.mode==='mixed'?challengeSections[rand(challengeSections.length)-1]:state.mode);
   let a,b,ans,op;
   if(mode==='add'){a=rand(max);b=rand(max);ans=a+b;op='+'}
   else if(mode==='subtract'){a=rand(max);b=rand(max);if(b>a)[a,b]=[b,a];ans=a-b;op='−'}
   else if(mode==='multiply'||mode==='tables'){let lim=mode==='tables'?10:Math.min(12,max);a=rand(lim);b=rand(lim);ans=a*b;op='×'}
   else {b=rand(Math.min(12,max));ans=rand(Math.min(12,max));a=b*ans;op='÷'}
-  return {a,b,ans,op};
+  return {a,b,ans,op,mode};
  }
  function makeQuestion(){
-  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="ltr">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></bdi>';$('modeLabel').textContent=names[state.mode];
+  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <bdi class="question-mark" dir="ltr">'+(document.documentElement.lang==='en'?'?':'؟')+'</bdi></bdi>';$('modeLabel').textContent=names[state.last.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
