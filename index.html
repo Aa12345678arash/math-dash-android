@@ -80,7 +80,7 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
 #game .panel{background:linear-gradient(155deg,#fff,#e9f8ff)}
 .question{padding:22px 10px 18px}.question .tag{display:inline-block;color:#fff;background:linear-gradient(90deg,#7c4bd9,#3978e7);padding:6px 14px;border-radius:30px;font-weight:900;box-shadow:0 3px 0 #254b9c}
 .question h2{display:block;direction:ltr;unicode-bidi:isolate;color:#163e7a;background:linear-gradient(180deg,#fff9d7,#ffe69a);border:3px solid #fff;border-bottom:6px solid #e7bd54;border-radius:22px;padding:18px 8px;margin:16px 0;font-size:clamp(30px,8vw,45px);letter-spacing:1px;text-shadow:0 2px #fff}
-.math-expression{direction:ltr;unicode-bidi:isolate;white-space:nowrap}.question-mark{display:inline-block;direction:rtl;unicode-bidi:isolate;color:#e83952;font-size:1.18em;text-shadow:0 2px #fff;vertical-align:-1px;margin-inline-start:3px}
+.math-expression{direction:ltr;unicode-bidi:isolate;white-space:nowrap}.question-mark{display:inline-block;direction:auto;unicode-bidi:isolate-override;color:#e83952;font-size:1.18em;text-shadow:0 2px #fff;vertical-align:-1px;margin-inline-start:3px}
 .question p{color:#426c91;font-size:13px;font-weight:800}.answers{gap:12px}
 .answer{background:linear-gradient(180deg,#51c8ff,#1689e8);border:2px solid #fff;border-bottom:5px solid #1168b5;border-radius:18px;color:#fff;font-size:25px;text-shadow:0 2px 2px #14518b;box-shadow:0 5px 12px #236da533;min-height:66px}
 .answer:nth-child(2){background:linear-gradient(180deg,#9ce95d,#3cbb3e);border-bottom-color:#218b30}
@@ -127,7 +127,7 @@ html[lang="en"] .field label{text-align:left}
 html[lang="en"] .leader-row{direction:ltr}
 html[lang="en"] footer{direction:ltr}
 html[lang="en"] .hero:after{left:auto;right:15px}
-html[lang="en"] .question h2,.math-expression{direction:ltr}
+html[lang="en"] .question h2,.math-expression{direction:ltr}html[lang="en"] .question-mark{direction:ltr;unicode-bidi:isolate-override}
 html[lang="en"] .start-row{direction:ltr}
 
   
@@ -145,6 +145,22 @@ html[lang="en"] .hero .eyebrow,html[lang="en"] .hero h2,html[lang="en"] .hero p,
 html[lang="en"] .daily-card{padding-inline-start:112px;padding-inline-end:18px}
 html[lang="en"] .daily-trophy{right:auto;left:8px}
 @media(max-width:420px){.hero-mascot{width:118px;right:-2px}.hero .eyebrow,.hero h2,.hero p,.hero button{max-width:76%}.daily-card{padding-inline-end:95px}.daily-trophy{width:94px;height:94px;top:24px}}
+
+  
+/* Poster-like 3D stage */
+.hero{min-height:286px;padding:26px 23px;background-image:linear-gradient(90deg,#0757a9f2 0%,#087acbd9 47%,#087acb35 100%),url('/math-dash-scene.svg');background-size:cover;background-position:center 55%;border-radius:30px;box-shadow:0 11px 0 #104b91,0 22px 36px #14548c55}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,#ffffff20,transparent 45%,#032c6240);pointer-events:none}
+.hero-mascot{width:clamp(150px,39vw,230px);right:0;bottom:-7px;filter:drop-shadow(0 14px 9px #073b7c70)}
+.hero .eyebrow,.hero h2,.hero p,.hero button{max-width:68%;text-shadow:0 2px 5px #073b7c80}
+.hero h2{font-size:clamp(25px,5vw,34px);line-height:1.35}
+.hero p{font-weight:700}
+.daily-card{background:linear-gradient(145deg,#fff8cf,#fff 52%,#dff5ff);border:2px solid #fff;box-shadow:0 9px 0 #d5a83d,0 17px 30px #286c9b30}
+.daily-trophy{width:125px;height:125px;filter:drop-shadow(0 8px 6px #a66b2e45)}
+.mode{transition:transform .12s ease,box-shadow .12s ease}
+.mode:active,.answer:active{transform:translateY(1px) scale(.985)}
+.question h2{box-shadow:0 8px 0 #d9aa41,0 13px 24px #b17d2840}
+.answer{box-shadow:0 7px 0 #125ca2,0 11px 18px #236da533}
+@media(max-width:420px){.hero{min-height:260px;padding:20px 16px}.hero-mascot{width:145px;right:-5px}.hero .eyebrow,.hero h2,.hero p,.hero button{max-width:72%}.hero h2{font-size:24px}.daily-trophy{width:104px;height:104px}}
 
   </style>
 </head>
@@ -175,7 +191,7 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div></div>
       <div class="progress"><span id="bar"></span></div>
-      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="rtl">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
+      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="auto">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
       <div class="start-row"><button class="ghost" id="quit">⏸ پایان بازی</button><div class="motivation-pill">⭐ سریع فکر کن، دقیق جواب بده!</div></div>
     </section>
     <section id="result" class="screen"><div class="panel result"><div class="big">🏅</div><div class="eyebrow">آفرین! تمرین به پایان رسید</div><h2>نتیجه بازی تو</h2><div class="result-stats"><div><b id="finalScore">۰</b><small>امتیاز</small></div><div><b id="finalHits">۰</b><small>پاسخ درست</small></div><div><b id="finalCount">۰</b><small>کل پرسش‌ها</small></div></div><p id="resultMessage"></p><button class="primary" id="again">بازی دوباره</button> <button class="ghost" id="homeBtn">خانه</button></div></section>
@@ -212,12 +228,12 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
   return {a,b,ans,op};
  }
  function makeQuestion(){
-  state.locked=false;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="rtl">؟</span></bdi>';$('modeLabel').textContent=names[state.mode];
+  state.locked=false;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="auto">'+(document.documentElement.lang===\'en\'?\'?\':\'؟\')+'</span></bdi>';$('modeLabel').textContent=names[state.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
  }
- function answer(btn,v){if(state.locked||state.timer===null||state.left<=0)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){const elapsed=performance.now()-state.questionAt;const bonus=Math.max(0,Math.min(5,Math.ceil((5000-elapsed)/1000)));state.hits++;state.score+=10+bonus;btn.classList.add('correct');$('feedback').textContent=bonus?'آفرین! '+num(10+bonus)+' امتیاز گرفتی؛ سرعتت عالی بود! 🌟':'آفرین! پاسخ درست بود؛ ۱۰ امتیاز ⭐';$('feedback').style.color='#16864d'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans)+' · دوباره تلاش کن!';$('feedback').style.color='#d83b56';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);if(state.challengeGoal&&state.hits>=state.challengeGoal){finish();return}setTimeout(()=>{if(state.left>0&&state.timer!==null)makeQuestion()},650)}
+ function answer(btn,v){if(state.locked||state.timer===null||state.left<=0)return;state.locked=true;state.count++;let ok=v===state.last.ans;if(ok){const elapsed=performance.now()-state.questionAt;const bonus=Math.max(0,Math.min(5,Math.ceil((5000-elapsed)/1000)));state.hits++;state.score+=10+bonus;btn.classList.add('correct');$('feedback').textContent=bonus?'آفرین! '+num(10+bonus)+' امتیاز گرفتی؛ سرعتت عالی بود! 🌟':'آفرین! پاسخ درست بود؛ ۱۰ امتیاز ⭐';$('feedback').style.color='#16864d'}else{btn.classList.add('wrong');$('feedback').textContent='پاسخ درست: '+num(state.last.ans)+' · دوباره تلاش کن!';$('feedback').style.color='#d83b56';[...$('answers').children].forEach(x=>{if(x.textContent===num(state.last.ans))x.classList.add('correct')})}beep(ok);$('score').textContent=num(state.score);$('hits').textContent=num(state.hits);if(state.challengeGoal&&state.hits>=state.challengeGoal){finish();return}setTimeout(()=>{if(state.left>0&&state.timer!==null)makeQuestion()},180)}
  function tick(){state.left--;let m=Math.floor(state.left/60),s=state.left%60;$('time').textContent=num(String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));$('bar').style.width=(state.left/state.total*100)+'%';if(state.left<=0)finish()}
  function start(challenge=false){clearInterval(state.timer);state.challengeGoal=challenge?40:0;state.score=state.hits=state.count=0;state.total=state.left=challenge?180:+$('duration').value;$('score').textContent=$('hits').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,1000);if(state.music)startMusic()}
  function finish(){clearInterval(state.timer);state.timer=null;stopMusic();show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('resultMessage').textContent=state.challengeGoal?(state.hits>=state.challengeGoal?'🏆 چالش روزانه را کامل کردی! قهرمان محاسبات شدی.':'چالش تمام شد؛ '+num(state.hits)+' پاسخ درست ثبت کردی. فردا دوباره تلاش کن!'):(state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!');let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString(document.documentElement.lang==='en'?'en-US':'fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
