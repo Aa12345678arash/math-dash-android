@@ -80,7 +80,7 @@ select{color:#164878;background:#f4fbff;border:2px solid #b6def2;border-radius:1
 #game .panel{background:linear-gradient(155deg,#fff,#e9f8ff)}
 .question{padding:22px 10px 18px}.question .tag{display:inline-block;color:#fff;background:linear-gradient(90deg,#7c4bd9,#3978e7);padding:6px 14px;border-radius:30px;font-weight:900;box-shadow:0 3px 0 #254b9c}
 .question h2{display:block;direction:ltr;unicode-bidi:isolate;color:#163e7a;background:linear-gradient(180deg,#fff9d7,#ffe69a);border:3px solid #fff;border-bottom:6px solid #e7bd54;border-radius:22px;padding:18px 8px;margin:16px 0;font-size:clamp(30px,8vw,45px);letter-spacing:1px;text-shadow:0 2px #fff}
-.math-expression{direction:ltr;unicode-bidi:isolate;white-space:nowrap}.question-mark{display:inline-block;direction:auto;unicode-bidi:isolate-override;color:#e83952;font-size:1.18em;text-shadow:0 2px #fff;vertical-align:-1px;margin-inline-start:3px}
+.math-expression{direction:ltr;unicode-bidi:isolate;white-space:nowrap}.question-mark{display:inline-block;direction:ltr;unicode-bidi:isolate-override;color:#e83952;font-size:1.18em;text-shadow:0 2px #fff;vertical-align:-1px;margin-inline-start:3px}
 .question p{color:#426c91;font-size:13px;font-weight:800}.answers{gap:12px}
 .answer{background:linear-gradient(180deg,#51c8ff,#1689e8);border:2px solid #fff;border-bottom:5px solid #1168b5;border-radius:18px;color:#fff;font-size:25px;text-shadow:0 2px 2px #14518b;box-shadow:0 5px 12px #236da533;min-height:66px}
 .answer:nth-child(2){background:linear-gradient(180deg,#9ce95d,#3cbb3e);border-bottom-color:#218b30}
@@ -293,7 +293,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
   return {a,b,ans,op,mode};
  }
  function makeQuestion(){
-  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <bdi class="question-mark" dir="ltr">'+(document.documentElement.lang==='en'?'?':'؟')+'</bdi></bdi>';$('modeLabel').textContent=names[state.last.mode];
+  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="ltr">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></bdi>';$('modeLabel').textContent=names[state.last.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
