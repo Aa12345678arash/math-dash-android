@@ -227,6 +227,7 @@ html[lang="en"] .home .hero-mascot{right:auto;left:8px}
 html[lang="en"] .home .hero:after{right:auto;left:16px}
 html[lang="en"] .question-mark{margin:0 2px 0 0}
 
+ .mode-hint{margin-top:13px;text-align:center;color:#fff;font-size:13px;font-weight:900;text-shadow:0 2px 5px #07549b;background:#075ba866;border:1px solid #ffffff70;border-radius:14px;padding:9px 12px;position:relative;z-index:2}
   </style>
 </head>
 <body>
@@ -234,7 +235,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
   <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="head-actions"><button class="head-btn" id="leaderBtn">🏆 رتبه‌بندی</button><button class="head-btn" id="settingsBtn" aria-expanded="false">⚙️ تنظیمات</button><button class="head-btn" id="languageBtn" type="button" aria-label="Change language">English</button><span class="version">۰.۱.۲</span></div></header>
   <main>
     <section id="home" class="screen home show">
-      <div class="panel hero"><img class="hero-mascot" src="/math-dash-mascot.svg" alt="Math Dash student mascot"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><button class="primary" id="start">شروع بازی ←</button></div>
+      <div class="panel hero"><img class="hero-mascot" src="/math-dash-mascot.svg" alt="Math Dash student mascot"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><div class="mode-hint">برای آغاز، یکی از بازی‌های زیر را انتخاب کن 👇</div></div>
       <div class="section-title">یک روش تمرین انتخاب کن</div>
       <div class="modes" id="modes">
         <button class="mode active" data-mode="mixed"><span class="symbol">🎯</span><strong>ترکیبی</strong><small>همه عملیات با هم</small></button>
@@ -268,7 +269,8 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 (()=>{
  const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
  const state={mode:'mixed',score:0,hits:0,wrong:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0,challengeGoal:0};
- const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};\n const challengeSections=['add','subtract','multiply','divide','tables'];
+ const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
+ const challengeSections=['add','subtract','multiply','divide','tables'];
  const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
  const num=n=>$('digits').value==='fa'?toFa(n):String(n);
  const show=id=>document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('show',s.id===id));
@@ -279,7 +281,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
  const melody=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,523.25,587.33,659.25,783.99];
  function startMusic(){if(!state.music||state.musicTimer!==null)return;audioContext();const play=()=>{if(!state.music)return;const n=melody[state.musicStep%melody.length];tone(n,.27,.018,'sine');if(state.musicStep%4===0)tone(n/2,.32,.012,'triangle');state.musicStep++};play();state.musicTimer=setInterval(play,360)}
  function stopMusic(){if(state.musicTimer!==null)clearInterval(state.musicTimer);state.musicTimer=null}
- document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.mode=b.dataset.mode});
+ document.querySelectorAll('.mode').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.mode=b.dataset.mode;start(false)}));
  $('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 صدا: روشن':'🔇 صدا: خاموش';$('soundBtn').setAttribute('aria-pressed',String(state.sound));if(state.sound)beep(true)};
  $('musicBtn').onclick=()=>{state.music=!state.music;$('musicBtn').textContent=state.music?'🎵 موسیقی: روشن':'🔇 موسیقی: خاموش';$('musicBtn').setAttribute('aria-pressed',String(state.music));if(state.music)startMusic();else stopMusic()};
  function question(){
@@ -334,7 +336,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
  function leaders(){let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');$('leaderList').innerHTML=rows.length?rows.map((r,i)=>'<div class="leader-row"><span>'+(i+1)+'. '+r.date+'</span><b>'+num(r.score)+' امتیاز · '+num(r.hits)+' درست</b></div>').join(''):'<p class="muted">هنوز رکوردی ثبت نشده است.</p>';show('leaders')}
  $('settingsBtn').onclick=()=>{const panel=$('settingsPanel'),hidden=panel.classList.toggle('collapsed');$('settingsBtn').setAttribute('aria-expanded',String(!hidden));if(!hidden)panel.scrollIntoView({behavior:'smooth',block:'nearest'})};
  $('dailyChallenge').onclick=()=>{if(state.music)startMusic();start(true)};
- $('start').onclick=()=>{if(state.music)startMusic();start(false)};$('again').onclick=()=>start(false);$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
+ $('again').onclick=()=>start(false);$('homeBtn').onclick=()=>show('home');$('quit').onclick=finish;$('leaderBtn').onclick=leaders;$('backHome').onclick=()=>show('home');$('clearLeaders').onclick=()=>{localStorage.removeItem('mathdash_scores');leaders()};
 })();
 </script>
 
