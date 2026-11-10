@@ -1,0 +1,12 @@
+{
+  "name": "محاسبات ریاضی",
+  "short_name": "محاسبات ریاضی",
+  "description": "بازی آموزشی تمرینی محاسبات ریاضی",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10172d",
+  "theme_color": "#10172d",
+  "orientation": "portrait"
+}
