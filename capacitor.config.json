@@ -1,0 +1,6 @@
+{
+  "appId": "ir.arashsalimi.mathdash",
+  "appName": "محاسبات ریاضی",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
