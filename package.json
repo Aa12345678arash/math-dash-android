@@ -1,0 +1,20 @@
+{
+  "name": "math-dash-android",
+  "version": "0.1.1",
+  "private": true,
+  "description": "بازی آموزشی تمرینی محاسبات ریاضی - MATH DASH",
+  "scripts": {
+    "web": "vite",
+    "build": "vite build",
+    "android:add": "cap add android",
+    "android:sync": "cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/core": "^6.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.1",
+    "vite": "^5.4.14"
+  }
+}
