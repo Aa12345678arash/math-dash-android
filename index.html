@@ -178,6 +178,55 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
 .result-stats div:last-child b,.result-stats div:last-child small{color:#a92e48}
 @media(max-width:390px){.game-top{grid-template-columns:repeat(2,minmax(0,1fr))}.result-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* Reference-inspired MATH DASH poster layout (responsive, using bundled artwork) */
+.home .hero{
+  min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  text-align:center;padding:22px 18px 24px;
+  background-image:linear-gradient(180deg,#0874d4b8 0%,#0874d420 45%,#0756a9a8 100%),url('/math-dash-scene.svg');
+  background-position:center 48%;background-size:cover;border:3px solid #fff;
+}
+.home .hero:after{content:"🏁";font-size:54px;left:auto;right:16px;top:8px;color:#fff;opacity:.95;text-shadow:0 4px 6px #124b8b}
+.home .hero-mascot{width:clamp(120px,34vw,185px);right:8px;bottom:-8px;z-index:1}
+.home .hero .eyebrow,.home .hero h2,.home .hero p,.home .hero button{max-width:100%;position:relative;z-index:2}
+.home .hero .eyebrow{align-self:center;background:linear-gradient(90deg,#7540d7,#a54ce0);border:2px solid #ffe477;border-radius:30px;padding:6px 17px;margin:3px auto 8px}
+.home .hero h2{align-self:center;width:100%;font-size:clamp(27px,6vw,38px);line-height:1.25;margin:5px 0 8px;text-align:center;color:#fff8d7;-webkit-text-stroke:.5px #8b4a13;text-shadow:0 3px 0 #9b4e15,0 5px 0 #633c91,0 8px 12px #123b76}
+.home .hero p{align-self:center;max-width:82%;margin:0 auto 14px;text-align:center;font-size:12px}
+.home .hero button{align-self:center;width:min(78%,330px);font-size:18px;padding:14px 20px;border-radius:24px}
+.home .section-title{margin-top:20px}
+#modes{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+#modes .mode{min-height:105px;text-align:center;padding:11px 6px;border-radius:19px}
+#modes .mode .symbol{display:block;font-size:28px}
+#modes .mode strong{font-size:13px}
+#modes .mode small{font-size:9px;line-height:1.5}
+#settingsPanel{border-radius:22px}
+.daily-card{margin-top:18px;min-height:154px}
+#game .panel{background-image:linear-gradient(180deg,#fffdf1ed 0%,#e9f8ffdf 100%),url('/math-dash-scene.svg');background-position:center bottom;background-size:cover;border:3px solid #fff;box-shadow:0 9px 0 #85c6e7,0 18px 32px #286c9b30}
+#game .question h2{direction:ltr;unicode-bidi:isolate;display:flex;align-items:center;justify-content:center;gap:.12em;min-height:94px}
+#game .math-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.13em;white-space:nowrap}
+.question-mark{direction:ltr!important;unicode-bidi:isolate!important;display:inline-block;flex:0 0 auto;line-height:1;font-family:Arial,Tahoma,sans-serif;font-weight:900;color:#e52f49;margin:0 0 0 2px;transform:none}
+#game .answers{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#game .answer{min-height:72px;font-size:clamp(23px,6vw,30px);border-radius:20px}
+#game .feedback{min-height:54px}
+#result .result{background-image:linear-gradient(180deg,#fff9dfed,#e9f8ffed),url('/math-dash-scene.svg');background-position:center bottom;background-size:cover}
+@media(max-width:420px){
+ .home .hero{min-height:300px;padding:18px 12px 20px}
+ .home .hero-mascot{width:122px;right:-3px;bottom:-5px}
+ .home .hero h2{font-size:25px}
+ .home .hero p{max-width:72%;margin-inline-start:0;margin-inline-end:auto;text-align:center}
+ .home .hero button{width:72%;font-size:16px}
+ #modes{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ #modes .mode{min-height:94px;padding:9px 3px}
+ #modes .mode .symbol{font-size:24px}
+ #modes .mode strong{font-size:12px}
+ #modes .mode small{font-size:8px}
+ #game .question h2{min-height:82px;padding:13px 5px}
+ #game .answer{min-height:64px;padding:13px 7px}
+}
+html[lang="en"] .home .hero-mascot{right:auto;left:8px}
+html[lang="en"] .home .hero:after{right:auto;left:16px}
+html[lang="en"] .question-mark{margin:0 2px 0 0}
+
   </style>
 </head>
 <body>
@@ -207,7 +256,7 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div><div class="stat wrong-stat"><small>پاسخ نادرست</small><b id="wrongs">۰</b></div></div>
       <div class="progress"><span id="bar"></span></div>
-      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="auto">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
+      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="ltr">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
       <div class="start-row"><button class="ghost" id="quit">⏸ پایان بازی</button><div class="motivation-pill">⭐ سریع فکر کن، دقیق جواب بده!</div></div>
     </section>
     <section id="result" class="screen"><div class="panel result"><div class="big">🏅</div><div class="eyebrow">آفرین! تمرین به پایان رسید</div><h2>نتیجه بازی تو</h2><div class="result-stats"><div><b id="finalScore">۰</b><small>امتیاز</small></div><div><b id="finalHits">۰</b><small>پاسخ درست</small></div><div><b id="finalCount">۰</b><small>کل پرسش‌ها</small></div><div><b id="finalWrong">۰</b><small>پاسخ نادرست</small></div></div><p id="resultMessage"></p><button class="primary" id="again">بازی دوباره</button> <button class="ghost" id="homeBtn">خانه</button></div></section>
@@ -244,7 +293,7 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
   return {a,b,ans,op};
  }
  function makeQuestion(){
-  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="auto">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></bdi>';$('modeLabel').textContent=names[state.mode];
+  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="ltr">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></bdi>';$('modeLabel').textContent=names[state.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
