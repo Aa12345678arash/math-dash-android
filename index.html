@@ -412,3 +412,21 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 </script>
 
 </body></html>
+<style>
+
+/* Final bidi lock: keep the Persian question mark after '=' in every locale */
+.math-expression{display:inline-flex;flex-direction:row;align-items:center;direction:ltr!important;unicode-bidi:isolate!important;white-space:nowrap;gap:.12em}
+.math-operands{direction:ltr!important;unicode-bidi:isolate!important}
+.question-mark{display:inline-block;direction:ltr!important;unicode-bidi:isolate-override!important;writing-mode:horizontal-tb;transform:none!important;margin:0 0 0 .08em;line-height:1}
+html[dir="rtl"] .question-mark{direction:ltr!important;unicode-bidi:isolate-override!important}
+/* Stronger illustrated game stage */
+.hero{isolation:isolate;background-image:linear-gradient(90deg,#0757a9f7 0%,#087acbe8 42%,#087acb20 100%),url('/math-dash-scene.svg');background-size:cover;background-position:center 58%}
+.hero-mascot{width:clamp(158px,42vw,248px);max-height:96%;object-fit:contain;right:-3px;bottom:-4px;filter:drop-shadow(0 16px 10px #06376b88)}
+.daily-card{min-height:158px;padding-inline-end:132px}
+.daily-trophy{width:138px;height:138px;right:4px;top:10px}
+.mode{min-height:104px;border-radius:23px}
+.mode .symbol{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:14px;background:#ffffffb8;box-shadow:inset 0 2px 4px #fff,0 3px 5px #275b8522}
+#game .question h2{min-height:94px;display:flex;justify-content:center;align-items:center;gap:8px}
+@media(max-width:420px){.hero-mascot{width:150px;right:-7px}.hero{background-position:58% center}.daily-card{padding-inline-end:108px}.daily-trophy{width:112px;height:112px}}
+
+</style>
