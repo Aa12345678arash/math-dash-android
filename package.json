@@ -7,7 +7,8 @@
     "web": "vite",
     "build": "vite build",
     "android:add": "cap add android",
-    "android:sync": "cap sync android"
+    "android:sync": "cap sync android",
+    "test": "node scripts/verify-release.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^6.2.1",
