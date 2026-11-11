@@ -103,7 +103,7 @@
   return {a,b,ans,op};
  }
  function makeQuestion(){
-  state.locked=false;state.last=question();$('problem').textContent=num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = ؟';$('modeLabel').textContent=names[state.mode];
+  state.locked=false;state.questionStartedAt=Date.now();state.last=question();$('problem').textContent=num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = ؟';$('modeLabel').textContent=names[state.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
