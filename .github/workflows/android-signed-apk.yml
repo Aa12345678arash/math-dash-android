@@ -82,14 +82,14 @@ jobs:
               }
 
           """
-          if not re.search(r"\\bbuildTypes\\s*\\{", text):
+          if not re.search(r"\bbuildTypes\s*\{", text):
               raise SystemExit("Could not find buildTypes block in generated app/build.gradle")
-          text = re.sub(r"(\\bbuildTypes\\s*\\{)", signing + r"\\1", text, count=1)
+          text = re.sub(r"(\bbuildTypes\s*\{)", signing + r"\1", text, count=1)
 
-          pattern = r"(buildTypes\\s*\\{\\s*release\\s*\\{)"
+          pattern = r"(buildTypes\s*\{\s*release\s*\{)"
           if not re.search(pattern, text):
               raise SystemExit("Could not find release build type block")
-          text = re.sub(pattern, r"\\1\\n            signingConfig signingConfigs.release", text, count=1)
+          text = re.sub(pattern, r"\1\n            signingConfig signingConfigs.release", text, count=1)
           path.write_text(text, encoding="utf-8")
           PY
 
