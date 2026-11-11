@@ -203,7 +203,7 @@ html[lang="en"] .daily-trophy{right:auto;left:8px}
 .daily-card{margin-top:18px;min-height:154px}
 #game .panel{background-image:linear-gradient(180deg,#fffdf1ed 0%,#e9f8ffdf 100%),url('/math-dash-scene.svg');background-position:center bottom;background-size:cover;border:3px solid #fff;box-shadow:0 9px 0 #85c6e7,0 18px 32px #286c9b30}
 #game .question h2{direction:ltr;unicode-bidi:isolate;display:flex;align-items:center;justify-content:center;gap:.12em;min-height:94px}
-#game .math-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.13em;white-space:nowrap}
+#game .math-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;flex-direction:row;align-items:center;justify-content:center;gap:.16em;white-space:nowrap}.math-operands{direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap}.question-mark{direction:rtl;unicode-bidi:isolate-override;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;line-height:1;font-family:Tahoma,Arial,sans-serif;font-weight:900;color:#e52f49;margin:0;transform:none;text-align:center}
 .question-mark{direction:rtl;unicode-bidi:isolate;display:inline-block;flex:0 0 auto;line-height:1;font-family:Tahoma,Arial,sans-serif;font-weight:900;color:#e52f49;margin:0 0 0 2px;transform:none;text-align:center}
 #game .answers{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 #game .answer{min-height:72px;font-size:clamp(23px,6vw,30px);border-radius:20px}
@@ -268,7 +268,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 <script>
 (()=>{
  const $=id=>document.getElementById(id), faDigits='۰۱۲۳۴۵۶۷۸۹';
- const state={mode:'mixed',score:0,hits:0,wrong:0,count:0,left:120,total:120,timer:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0,challengeGoal:0};
+ const state={mode:'mixed',score:0,hits:0,wrong:0,count:0,left:120,total:120,timer:null,deadline:0,finished:false,finishTimeout:null,locked:false,sound:true,music:true,audio:null,musicTimer:null,musicStep:0,last:null,questionAt:0,challengeGoal:0};
  const names={mixed:'تمرین ترکیبی',add:'تمرین جمع',subtract:'تمرین تفریق',multiply:'تمرین ضرب',divide:'تمرین تقسیم',tables:'جدول ضرب'};
  const challengeSections=['add','subtract','multiply','divide','tables'];
  const toFa=n=>String(n).replace(/\d/g,d=>faDigits[+d]);
@@ -295,13 +295,14 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
   return {a,b,ans,op,mode};
  }
  function makeQuestion(){
-  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<bdi class="math-expression" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' = <span class="question-mark" dir="rtl">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></bdi>';$('modeLabel').textContent=names[state.last.mode];
+  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<span class="math-expression" dir="ltr"><span class="math-operands" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' =</span><span class="question-mark" dir="rtl">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></span>';$('modeLabel').textContent=state.challengeGoal?'چالش روزانه · '+names[state.last.mode]:names[state.last.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
  }
  function answer(btn,v){
-  if(state.locked||state.timer===null||state.left<=0||btn.disabled)return;
+  tick();
+  if(state.finished||state.locked||state.timer===null||state.left<=0||btn.disabled)return;
   state.locked=true;
   const ok=v===state.last.ans;
   const choices=[...$('answers').children];
@@ -327,12 +328,12 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
   $('score').textContent=num(state.score);
   $('hits').textContent=num(state.hits);
   $('wrongs').textContent=num(state.wrong);
-  if(state.challengeGoal&&state.hits>=state.challengeGoal){setTimeout(finish,650);return}
-  setTimeout(()=>{if(state.left>0&&state.timer!==null)makeQuestion()},700);
+  if(state.challengeGoal&&state.hits>=state.challengeGoal){state.finishTimeout=setTimeout(()=>{if(!state.finished&&state.challengeGoal&&state.hits>=state.challengeGoal)finish()},650);return}
+  setTimeout(()=>{if(!state.finished&&state.left>0&&state.timer!==null)makeQuestion()},700);
  }
- function tick(){state.left--;let m=Math.floor(state.left/60),s=state.left%60;$('time').textContent=num(String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));$('bar').style.width=(state.left/state.total*100)+'%';if(state.left<=0)finish()}
- function start(challenge=false){clearInterval(state.timer);state.challengeGoal=challenge?40:0;state.score=state.hits=state.wrong=state.count=0;state.total=state.left=+$('duration').value;$('score').textContent=$('hits').textContent=$('wrongs').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,1000);if(state.music)startMusic()}
- function finish(){clearInterval(state.timer);state.timer=null;stopMusic();show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('finalWrong').textContent=num(state.wrong);$('resultMessage').textContent=state.challengeGoal?(state.hits>=state.challengeGoal?'🏆 چالش روزانه را کامل کردی! قهرمان محاسبات شدی.':'چالش تمام شد؛ '+num(state.hits)+' پاسخ درست ثبت کردی. فردا دوباره تلاش کن!'):(state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!');let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString(document.documentElement.lang==='en'?'en-US':'fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
+ function tick(){if(state.timer===null||state.finished)return;state.left=Math.max(0,Math.ceil((state.deadline-Date.now())/1000));let m=Math.floor(state.left/60),s=state.left%60;$('time').textContent=num(String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'));$('bar').style.width=(state.left/state.total*100)+'%';if(state.left<=0)finish()}
+ function start(challenge=false){clearInterval(state.timer);if(state.finishTimeout!==null)clearTimeout(state.finishTimeout);state.finishTimeout=null;state.timer=null;state.finished=false;state.challengeGoal=challenge?40:0;state.score=state.hits=state.wrong=state.count=0;state.total=state.left=Math.max(1,Number($('duration').value)||120);state.deadline=Date.now()+state.total*1000;$('score').textContent=$('hits').textContent=$('wrongs').textContent=num(0);show('game');$('time').textContent=num(String(Math.floor(state.left/60)).padStart(2,'0')+':'+String(state.left%60).padStart(2,'0'));$('bar').style.width='100%';makeQuestion();state.timer=setInterval(tick,250);tick();if(state.music)startMusic()}
+ function finish(){if(state.finished)return;state.finished=true;clearInterval(state.timer);state.timer=null;if(state.finishTimeout!==null)clearTimeout(state.finishTimeout);state.finishTimeout=null;stopMusic();show('result');$('finalScore').textContent=num(state.score);$('finalHits').textContent=num(state.hits);$('finalCount').textContent=num(state.count);$('finalWrong').textContent=num(state.wrong);$('resultMessage').textContent=state.challengeGoal?(state.hits>=state.challengeGoal?'🏆 چالش روزانه را کامل کردی! قهرمان محاسبات شدی.':'چالش تمام شد؛ '+num(state.hits)+' پاسخ درست ثبت کردی. فردا دوباره تلاش کن!'):(state.hits>=10?'عالی بود! به تمرین ادامه بده.':'هر بار تمرین، تو را قوی‌تر می‌کند. دوباره تلاش کن!');let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');rows.push({score:state.score,hits:state.hits,date:new Date().toLocaleDateString(document.documentElement.lang==='en'?'en-US':'fa-IR')});rows.sort((a,b)=>b.score-a.score);localStorage.setItem('mathdash_scores',JSON.stringify(rows.slice(0,10)))}
  function leaders(){let rows=JSON.parse(localStorage.getItem('mathdash_scores')||'[]');$('leaderList').innerHTML=rows.length?rows.map((r,i)=>'<div class="leader-row"><span>'+(i+1)+'. '+r.date+'</span><b>'+num(r.score)+' امتیاز · '+num(r.hits)+' درست</b></div>').join(''):'<p class="muted">هنوز رکوردی ثبت نشده است.</p>';show('leaders')}
  $('settingsBtn').onclick=()=>{const panel=$('settingsPanel'),hidden=panel.classList.toggle('collapsed');$('settingsBtn').setAttribute('aria-expanded',String(!hidden));if(!hidden)panel.scrollIntoView({behavior:'smooth',block:'nearest'})};
  $('dailyChallenge').onclick=()=>{if(state.music)startMusic();start(true)};
@@ -389,3 +390,22 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 </script>
 
 </body></html>
+
+/* MATH DASH 0.1.4 visual polish: lightweight effects for mobile devices */
+.home .hero{isolation:isolate;border:1px solid #ffffffa8;box-shadow:0 12px 0 #1b4e83,0 22px 38px #174f8a35}
+.home .hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 88% 18%,#fff8b84d 0 7%,transparent 8%),linear-gradient(125deg,#ffffff12,transparent 52%)}
+.home .hero-mascot{filter:drop-shadow(0 10px 10px #164d8a55);animation:mascotFloat 4.8s ease-in-out infinite}
+.daily-trophy{filter:drop-shadow(0 9px 8px #a66b2e55);animation:trophyShine 3.8s ease-in-out infinite}
+#modes .mode{border:2px solid #ffffff;box-shadow:0 5px 0 #a9d6ed,0 9px 16px #286c9b1c;transition:transform .16s ease,box-shadow .16s ease}
+#modes .mode:active{transform:translateY(2px);box-shadow:0 2px 0 #a9d6ed}
+#game .game-top .stat{border:2px solid #fff;box-shadow:0 4px 0 #b9dced,0 8px 14px #286c9b20;background:linear-gradient(160deg,#fff,#e8f7ff)}
+#game .game-top .stat:first-child{background:linear-gradient(145deg,#fff3c5,#ffe18a)}
+#game .progress{height:13px;border:2px solid #fff;box-shadow:0 4px 0 #9bcbe4,0 7px 13px #286c9b20}
+#game .progress span{box-shadow:0 0 12px #56dca4aa}
+#game .answer{position:relative;overflow:hidden;transition:transform .14s ease,filter .14s ease;box-shadow:0 7px 0 #125ca2,0 12px 18px #236da533}
+#game .answer:active{filter:brightness(1.08);transform:translateY(2px) scale(.99)}
+#game .question h2{border-color:#fff;box-shadow:0 8px 0 #d9aa41,0 14px 25px #b17d2848}
+#result .result{border:2px solid #fff;box-shadow:0 10px 0 #b6dff2,0 18px 34px #286c9b30}
+@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes trophyShine{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.home .hero-mascot,.daily-trophy{animation:none}#modes .mode,#game .answer{transition:none}}
