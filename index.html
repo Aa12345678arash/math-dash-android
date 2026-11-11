@@ -228,7 +228,29 @@ html[lang="en"] .home .hero:after{right:auto;left:16px}
 html[lang="en"] .question-mark{margin:0 2px 0 0}
 
  .mode-hint{margin-top:13px;text-align:center;color:#fff;font-size:13px;font-weight:900;text-shadow:0 2px 5px #07549b;background:#075ba866;border:1px solid #ffffff70;border-radius:14px;padding:9px 12px;position:relative;z-index:2}
-  </style>
+  /* MATH DASH 0.1.4 visual polish: lightweight effects for mobile devices */
+#game .math-expression{direction:ltr;unicode-bidi:isolate;display:inline-flex;flex-direction:row;align-items:center;justify-content:center;gap:.16em;white-space:nowrap}
+#game .math-operands{direction:ltr;unicode-bidi:isolate;display:inline-block;white-space:nowrap}
+#game .question-mark{direction:rtl;unicode-bidi:isolate-override;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;line-height:1;font-family:Tahoma,Arial,sans-serif;font-weight:900;color:#e52f49;margin:0;transform:none;text-align:center}
+.home .hero{isolation:isolate;border:1px solid #ffffffa8;box-shadow:0 12px 0 #1b4e83,0 22px 38px #174f8a35}
+.home .hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 88% 18%,#fff8b84d 0 7%,transparent 8%),linear-gradient(125deg,#ffffff12,transparent 52%)}
+.home .hero-mascot{filter:drop-shadow(0 10px 10px #164d8a55);animation:mascotFloat 4.8s ease-in-out infinite}
+.daily-trophy{filter:drop-shadow(0 9px 8px #a66b2e55);animation:trophyShine 3.8s ease-in-out infinite}
+#modes .mode{border:2px solid #ffffff;box-shadow:0 5px 0 #a9d6ed,0 9px 16px #286c9b1c;transition:transform .16s ease,box-shadow .16s ease}
+#modes .mode:active{transform:translateY(2px);box-shadow:0 2px 0 #a9d6ed}
+#game .game-top .stat{border:2px solid #fff;box-shadow:0 4px 0 #b9dced,0 8px 14px #286c9b20;background:linear-gradient(160deg,#fff,#e8f7ff)}
+#game .game-top .stat:first-child{background:linear-gradient(145deg,#fff3c5,#ffe18a)}
+#game .progress{height:13px;border:2px solid #fff;box-shadow:0 4px 0 #9bcbe4,0 7px 13px #286c9b20}
+#game .progress span{box-shadow:0 0 12px #56dca4aa}
+#game .answer{position:relative;overflow:hidden;transition:transform .14s ease,filter .14s ease;box-shadow:0 7px 0 #125ca2,0 12px 18px #236da533}
+#game .answer:active{filter:brightness(1.08);transform:translateY(2px) scale(.99)}
+#game .question h2{border-color:#fff;box-shadow:0 8px 0 #d9aa41,0 14px 25px #b17d2848}
+#result .result{border:2px solid #fff;box-shadow:0 10px 0 #b6dff2,0 18px 34px #286c9b30}
+@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes trophyShine{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.home .hero-mascot,.daily-trophy{animation:none}#modes .mode,#game .answer{transition:none}}
+
+</style>
 </head>
 <body>
 <div class="app">
@@ -390,22 +412,3 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 </script>
 
 </body></html>
-
-/* MATH DASH 0.1.4 visual polish: lightweight effects for mobile devices */
-.home .hero{isolation:isolate;border:1px solid #ffffffa8;box-shadow:0 12px 0 #1b4e83,0 22px 38px #174f8a35}
-.home .hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 88% 18%,#fff8b84d 0 7%,transparent 8%),linear-gradient(125deg,#ffffff12,transparent 52%)}
-.home .hero-mascot{filter:drop-shadow(0 10px 10px #164d8a55);animation:mascotFloat 4.8s ease-in-out infinite}
-.daily-trophy{filter:drop-shadow(0 9px 8px #a66b2e55);animation:trophyShine 3.8s ease-in-out infinite}
-#modes .mode{border:2px solid #ffffff;box-shadow:0 5px 0 #a9d6ed,0 9px 16px #286c9b1c;transition:transform .16s ease,box-shadow .16s ease}
-#modes .mode:active{transform:translateY(2px);box-shadow:0 2px 0 #a9d6ed}
-#game .game-top .stat{border:2px solid #fff;box-shadow:0 4px 0 #b9dced,0 8px 14px #286c9b20;background:linear-gradient(160deg,#fff,#e8f7ff)}
-#game .game-top .stat:first-child{background:linear-gradient(145deg,#fff3c5,#ffe18a)}
-#game .progress{height:13px;border:2px solid #fff;box-shadow:0 4px 0 #9bcbe4,0 7px 13px #286c9b20}
-#game .progress span{box-shadow:0 0 12px #56dca4aa}
-#game .answer{position:relative;overflow:hidden;transition:transform .14s ease,filter .14s ease;box-shadow:0 7px 0 #125ca2,0 12px 18px #236da533}
-#game .answer:active{filter:brightness(1.08);transform:translateY(2px) scale(.99)}
-#game .question h2{border-color:#fff;box-shadow:0 8px 0 #d9aa41,0 14px 25px #b17d2848}
-#result .result{border:2px solid #fff;box-shadow:0 10px 0 #b6dff2,0 18px 34px #286c9b30}
-@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes trophyShine{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}}
-@media(prefers-reduced-motion:reduce){.home .hero-mascot,.daily-trophy{animation:none}#modes .mode,#game .answer{transition:none}}
