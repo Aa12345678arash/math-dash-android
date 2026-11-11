@@ -30,6 +30,8 @@ jobs:
 
       - name: تنظیم Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
 
       - name: نصب Android API 36
         run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
@@ -81,17 +83,17 @@ jobs:
               }
 
           """
-          build_types = r"(\bbuildTypes\s*\{)"
+          build_types = r"(\\bbuildTypes\\s*\\{)"
           if not re.search(build_types, text):
               raise SystemExit("Could not find buildTypes block")
           text = re.sub(build_types, lambda m: signing + m.group(1), text, count=1)
 
-          release_block = r"(buildTypes\s*\{\s*release\s*\{)"
+          release_block = r"(buildTypes\\s*\\{\\s*release\\s*\\{)"
           if not re.search(release_block, text):
               raise SystemExit("Could not find release build type")
           text = re.sub(
               release_block,
-              lambda m: m.group(1) + "\n            signingConfig signingConfigs.release",
+              lambda m: m.group(1) + "\\n            signingConfig signingConfigs.release",
               text,
               count=1,
           )
