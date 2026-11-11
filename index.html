@@ -254,7 +254,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 </head>
 <body>
 <div class="app">
-  <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="head-actions"><button class="head-btn" id="leaderBtn">🏆 رتبه‌بندی</button><button class="head-btn" id="settingsBtn" aria-expanded="false">⚙️ تنظیمات</button><button class="head-btn" id="languageBtn" type="button" aria-label="Change language">English</button><span class="version">۰.۱.۵</span></div></header>
+  <header><div class="brand"><div class="logo" aria-label="Math Dash">✦</div><div><h1>محاسبات ریاضی</h1><div class="en">MATH DASH</div></div></div><div class="head-actions"><button class="head-btn" id="leaderBtn">🏆 رتبه‌بندی</button><button class="head-btn" id="settingsBtn" aria-expanded="false">⚙️ تنظیمات</button><button class="head-btn" id="languageBtn" type="button" aria-label="Change language">English</button><span class="version">۰.۱.۶</span></div></header>
   <main>
     <section id="home" class="screen home show">
       <div class="panel hero"><img class="hero-mascot" src="/math-dash-mascot.svg" alt="Math Dash student mascot"><div class="eyebrow">آماده‌ای سریع‌تر فکر کنی؟</div><h2>تمرین کن، پاسخ بده،<br>رکوردت را بشکن!</h2><p>با بازی‌های کوتاه و سرگرم‌کننده، مهارت محاسبات ریاضی‌ات را تقویت کن.</p><div class="mode-hint">برای آغاز، یکی از بازی‌های زیر را انتخاب کن 👇</div></div>
@@ -279,7 +279,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
     <section id="game" class="screen">
       <div class="game-top"><div class="stat"><small>زمان باقی‌مانده</small><b id="time">۰۲:۰۰</b></div><div class="stat"><small>امتیاز</small><b id="score">۰</b></div><div class="stat"><small>پاسخ درست</small><b id="hits">۰</b></div><div class="stat wrong-stat"><small>پاسخ نادرست</small><b id="wrongs">۰</b></div></div>
       <div class="progress"><span id="bar"></span></div>
-      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="rtl">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
+      <div class="panel"><div class="question"><div class="tag" id="modeLabel">تمرین ترکیبی</div><h2 id="problem" aria-live="polite"><bdi dir="ltr">۸ + ۷ = <span class="question-mark" dir="ltr">؟</span></bdi></h2><p>پاسخ درست را انتخاب کن</p></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div></div>
       <div class="start-row"><button class="ghost" id="quit">⏸ پایان بازی</button><div class="motivation-pill">⭐ سریع فکر کن، دقیق جواب بده!</div></div>
     </section>
     <section id="result" class="screen"><div class="panel result"><div class="big">🏅</div><div class="eyebrow">آفرین! تمرین به پایان رسید</div><h2>نتیجه بازی تو</h2><div class="result-stats"><div><b id="finalScore">۰</b><small>امتیاز</small></div><div><b id="finalHits">۰</b><small>پاسخ درست</small></div><div><b id="finalCount">۰</b><small>کل پرسش‌ها</small></div><div><b id="finalWrong">۰</b><small>پاسخ نادرست</small></div></div><p id="resultMessage"></p><button class="primary" id="again">بازی دوباره</button> <button class="ghost" id="homeBtn">خانه</button></div></section>
@@ -317,7 +317,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
   return {a,b,ans,op,mode};
  }
  function makeQuestion(){
-  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<span class="math-expression" dir="ltr"><span class="math-operands" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' =</span><span class="question-mark" dir="rtl">'+(document.documentElement.lang==='en'?'?':'&#x061F;')+'</span></span>';$('modeLabel').textContent=state.challengeGoal?'چالش روزانه · '+names[state.last.mode]:names[state.last.mode];
+  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<span class="math-expression" dir="ltr"><span class="math-operands" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' =</span><span class="question-mark" dir="ltr">'+(document.documentElement.lang==='en'?'?':'&#x061F;')+'</span></span>';$('modeLabel').textContent=state.challengeGoal?'چالش روزانه · '+names[state.last.mode]:names[state.last.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
@@ -385,6 +385,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
  function setLanguage(lang){
   if(busy)return;busy=true;current=lang;
   const en=lang==='en',map=en?faToEn:enToFa;
+  const digitsControl=document.getElementById('digits');if(digitsControl)digitsControl.value=en?'en':'fa';
   document.documentElement.lang=lang;document.documentElement.dir=en?'ltr':'rtl';document.body.dir=en?'ltr':'rtl';
   walk(document.body,map);
   document.title=en?'Math Dash | Math Practice Game':'محاسبات ریاضی | MATH DASH';
@@ -429,4 +430,10 @@ html[dir="rtl"] .question-mark{direction:rtl!important;unicode-bidi:isolate!impo
 #game .question h2{min-height:94px;display:flex;justify-content:center;align-items:center;gap:8px}
 @media(max-width:420px){.hero-mascot{width:150px;right:-7px}.hero{background-position:58% center}.daily-card{padding-inline-end:108px}.daily-trophy{width:112px;height:112px}}
 
+
+/* MATH DASH 0.1.6: locale digits + consistent LTR math punctuation */
+.math-expression{display:inline-flex!important;flex-direction:row!important;align-items:center!important;direction:ltr!important;unicode-bidi:isolate!important;white-space:nowrap!important;gap:.12em}
+.math-operands{direction:ltr!important;unicode-bidi:isolate!important;display:inline-block}
+.question-mark{display:inline-block!important;direction:ltr!important;unicode-bidi:isolate!important;writing-mode:horizontal-tb!important;transform:none!important;margin:0!important;line-height:1!important;flex:0 0 auto;color:#e83952;font-size:1.18em;vertical-align:middle}
+html[dir="rtl"] .question-mark,html[dir="ltr"] .question-mark{direction:ltr!important;unicode-bidi:isolate!important}
 </style>
