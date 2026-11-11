@@ -317,7 +317,7 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
   return {a,b,ans,op,mode};
  }
  function makeQuestion(){
-  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<span class="math-expression" dir="ltr"><span class="math-operands" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' =</span><span class="question-mark" dir="rtl">'+(document.documentElement.lang==='en'?'?':'؟')+'</span></span>';$('modeLabel').textContent=state.challengeGoal?'چالش روزانه · '+names[state.last.mode]:names[state.last.mode];
+  state.locked=false;state.count++;state.last=question();state.questionAt=performance.now();$('problem').innerHTML='<span class="math-expression" dir="ltr"><span class="math-operands" dir="ltr">'+num(state.last.a)+' '+state.last.op+' '+num(state.last.b)+' =</span><span class="question-mark" dir="rtl">'+(document.documentElement.lang==='en'?'?':'&#x061F;')+'</span></span>';$('modeLabel').textContent=state.challengeGoal?'چالش روزانه · '+names[state.last.mode]:names[state.last.mode];
   let opts=new Set([state.last.ans]);while(opts.size<4){let spread=Math.max(5,Math.ceil(state.last.ans*.35));let v=Math.max(0,state.last.ans+Math.floor(Math.random()*(spread*2+1))-spread);opts.add(v)}
   let arr=[...opts].sort(()=>Math.random()-.5);$('answers').innerHTML='';
   arr.forEach(v=>{let b=document.createElement('button');b.className='answer';b.textContent=num(v);b.onclick=()=>answer(b,v);$('answers').appendChild(b)});$('feedback').textContent='';
@@ -417,8 +417,8 @@ html[lang="en"] .question-mark{margin:0 2px 0 0}
 /* Final bidi lock: keep the Persian question mark after '=' in every locale */
 .math-expression{display:inline-flex;flex-direction:row;align-items:center;direction:ltr!important;unicode-bidi:isolate!important;white-space:nowrap;gap:.12em}
 .math-operands{direction:ltr!important;unicode-bidi:isolate!important}
-.question-mark{display:inline-block;direction:ltr!important;unicode-bidi:isolate-override!important;writing-mode:horizontal-tb;transform:none!important;margin:0 0 0 .08em;line-height:1}
-html[dir="rtl"] .question-mark{direction:ltr!important;unicode-bidi:isolate-override!important}
+.question-mark{display:inline-flex;direction:rtl!important;unicode-bidi:isolate!important;writing-mode:horizontal-tb;transform:none!important;margin:0 .08em 0 0;line-height:1;font-family:"Noto Naskh Arabic",Tahoma,Arial,sans-serif;flex:0 0 auto}
+html[dir="rtl"] .question-mark{direction:rtl!important;unicode-bidi:isolate!important}
 /* Stronger illustrated game stage */
 .hero{isolation:isolate;background-image:linear-gradient(90deg,#0757a9f7 0%,#087acbe8 42%,#087acb20 100%),url('/math-dash-scene.svg');background-size:cover;background-position:center 58%}
 .hero-mascot{width:clamp(158px,42vw,248px);max-height:96%;object-fit:contain;right:-3px;bottom:-4px;filter:drop-shadow(0 16px 10px #06376b88)}
