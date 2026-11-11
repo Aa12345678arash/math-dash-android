@@ -21,5 +21,6 @@ assert.match(appScript, /deadline=Date\.now\(\)\+state\.remainingMs/, 'Timer mus
 assert.match(appScript, /Math\.max\(0,Math\.ceil\(\(state\.deadline-Date\.now\(\)\)\/1000\)\)/, 'Timer must clamp at zero');
 assert.match(appScript, /function pauseToggle\(/, 'Pause/resume control must exist');
 assert.match(appScript, /state\.score\+=10\+bonus/, 'Correct-answer score must include speed bonus');
+assert.match(appScript, /state\.questionStartedAt=Date\.now\(\)/, 'Each question must start its own response timer');
 
 console.log('MATH DASH release checks passed.');
