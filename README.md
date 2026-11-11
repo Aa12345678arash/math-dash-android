@@ -8,7 +8,7 @@
 ## فناوری
 - HTML, CSS, JavaScript
 - Vite
-- Capacitor 6 برای بسته‌بندی اندروید
+- Capacitor 8 برای بسته‌بندی اندروید (Android API 36)
 - ذخیره رکوردها در حافظه محلی دستگاه
 
 ## امکانات نسخه 0.1.1
@@ -32,7 +32,7 @@ npm install
 npx cap add android
 npx cap sync android
 cd android
-./gradlew assembleDebug
+./gradlew assembleRelease
 ```
 
 خروجی APK در مسیر `android/app/build/outputs/apk/debug/app-debug.apk` قرار می‌گیرد.
